@@ -15,8 +15,8 @@ export const schema = gql`
   }
 
   type Query {
-    movieMashups: [MovieMashup!]! @requireAuth
-    movieMashup(id: String!): MovieMashup @requireAuth
+    movieMashups: [MovieMashup!]! @skipAuth
+    movieMashup(id: String!): MovieMashup @skipAuth
   }
 
   input CreateMovieMashupInput {
@@ -36,13 +36,19 @@ export const schema = gql`
     firstMovieId: String
     secondMovieId: String
   }
+  input MashMoviesInput {
+    firstMovieId: String!
+    secondMovieId: String!
+  }
 
   type Mutation {
-    createMovieMashup(input: CreateMovieMashupInput!): MovieMashup! @requireAuth
+    mashMovies(input: MashMoviesInput!): MovieMashup!
+      @rateLimited(identifier: "mashMovies")
+    createMovieMashup(input: CreateMovieMashupInput!): MovieMashup! @blocked
     updateMovieMashup(
       id: String!
       input: UpdateMovieMashupInput!
-    ): MovieMashup! @requireAuth
-    deleteMovieMashup(id: String!): MovieMashup! @requireAuth
+    ): MovieMashup! @blocked
+    deleteMovieMashup(id: String!): MovieMashup! @blocked
   }
 `

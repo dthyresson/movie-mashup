@@ -11,11 +11,12 @@ export const schema = gql`
   }
 
   type Query {
-    movies: [Movie!]! @requireAuth
-    movie(id: String!): Movie @requireAuth
+    movies: [Movie!]! @skipAuth
+    movie(id: String!): Movie @skipAuth
   }
 
   input CreateMovieInput {
+    id: String!
     title: String!
     photo: String!
   }
@@ -26,8 +27,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createMovie(input: CreateMovieInput!): Movie! @requireAuth
-    updateMovie(id: String!, input: UpdateMovieInput!): Movie! @requireAuth
-    deleteMovie(id: String!): Movie! @requireAuth
+    createMovie(input: CreateMovieInput!): Movie! @blocked
+    updateMovie(id: String!, input: UpdateMovieInput!): Movie! @blocked
+    deleteMovie(id: String!): Movie! @blocked
   }
 `

@@ -1,5 +1,6 @@
 export interface CreateMovieInput {
   __typename?: 'CreateMovieInput'
+  id: string
   photo: string
   title: string
 }
@@ -12,6 +13,12 @@ export interface CreateMovieMashupInput {
   tagline: string
   title: string
   treatment: string
+}
+
+export interface MashMoviesInput {
+  __typename?: 'MashMoviesInput'
+  firstMovieId: string
+  secondMovieId: string
 }
 
 export interface Movie {
@@ -48,6 +55,7 @@ export interface Mutation {
   createMovieMashup: MovieMashup
   deleteMovie: Movie
   deleteMovieMashup: MovieMashup
+  mashMovies: MovieMashup
   updateMovie: Movie
   updateMovieMashup: MovieMashup
 }

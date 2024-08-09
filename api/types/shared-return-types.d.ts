@@ -14,6 +14,7 @@ import type {
 // or a model where the prisma model is nested pretty deeply (GraphQL connections, for example.)
 export interface CreateMovieInput {
   __typename?: 'CreateMovieInput'
+  id: string
   photo: string
   title: string
 }
@@ -28,12 +29,19 @@ export interface CreateMovieMashupInput {
   treatment: string
 }
 
+export interface MashMoviesInput {
+  __typename?: 'MashMoviesInput'
+  firstMovieId: string
+  secondMovieId: string
+}
+
 export interface Mutation {
   __typename?: 'Mutation'
   createMovie: PMovie
   createMovieMashup: PMovieMashup
   deleteMovie: PMovie
   deleteMovieMashup: PMovieMashup
+  mashMovies: PMovieMashup
   updateMovie: PMovie
   updateMovieMashup: PMovieMashup
 }

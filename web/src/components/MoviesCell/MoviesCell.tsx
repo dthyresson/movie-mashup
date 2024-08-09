@@ -167,15 +167,17 @@ export const Success = ({
             }`}
           >
             <div className="flex h-full flex-col rounded-lg border border-slate-100 p-4 transition-transform hover:scale-105 hover:bg-orange-50 hover:text-orange-500 hover:ring-2 hover:ring-red-400">
-              <img
-                src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
-                alt={movie.title}
-                className="mx-auto w-48 object-scale-down "
-              />
-              <div className="flex flex-grow items-center justify-center p-4 text-center">
-                <h2 className="font-movie-title text-xl font-semibold ">
+              <div className="flex h-full flex-col">
+                <h2 className="mb-4 text-center font-movie-title text-xl font-semibold">
                   {movie.title}
                 </h2>
+                <div className="flex flex-grow items-end justify-center">
+                  <img
+                    src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
+                    alt={movie.title}
+                    className="w-48 border border-slate-100 object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>

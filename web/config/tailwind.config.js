@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'movie-title': ['Bebas Neue', 'sans-serif'],
+        'movie-title': ['Spicy Rice', 'sans-serif'],
 
         'movie-subtitle': ['Oswald', 'sans-serif'],
         'movie-body': ['Roboto', 'sans-serif'],

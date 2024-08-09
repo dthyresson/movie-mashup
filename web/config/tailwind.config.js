@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'movie-title': ['Bebas Neue', 'sans-serif'],
+
         'movie-subtitle': ['Oswald', 'sans-serif'],
         'movie-body': ['Roboto', 'sans-serif'],
       },

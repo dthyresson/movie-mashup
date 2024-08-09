@@ -5,9 +5,8 @@ import MovieMashupsCell from 'src/components/MovieMashupsCell'
 const MovieMashupsPage = () => {
   return (
     <>
-      <Metadata title="Smashups" description="Smashups page" />
+      <Metadata title="Movie Mashups" description="Smashups page" />
 
-      <h1 className="mb-4 text-xl font-bold">All Mashups</h1>
       <MovieMashupsCell />
     </>
   )

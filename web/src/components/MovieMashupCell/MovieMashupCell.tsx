@@ -56,12 +56,12 @@ const MashupComponent = ({ movieMashup }) => {
   }
 
   return (
-    <div className="mx-auto my-6 max-w-3xl overflow-hidden rounded-lg bg-white shadow-lg">
+    <div className="mx-auto my-0 max-w-3xl  bg-white">
       <div className="flex flex-col items-center justify-center gap-4 p-6">
         <h2 className="mb-2 font-movie-title text-3xl font-bold text-gray-800">
           {movieMashup.title}
         </h2>
-        <div className="relative mb-6 aspect-video w-full max-w-2xl bg-gradient-to-b from-gray-200 via-gray-100 to-gray-300">
+        <div className="relative mb-2 aspect-video w-full max-w-2xl bg-gradient-to-b from-slate-50 via-slate-200 to-slate-100">
           <img
             className="border-gra -200 absolute inset-0 h-full w-full  object-contain p-4"
             src={movieMashup.photo}
@@ -88,7 +88,7 @@ const MashupComponent = ({ movieMashup }) => {
           </button>
           {showDescription && (
             <button
-              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-75 p-4"
+              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-red-500 bg-opacity-75 p-4"
               onClick={() => setShowDescription(false)}
             >
               <p className="text-center font-movie-body text-white">
@@ -98,7 +98,7 @@ const MashupComponent = ({ movieMashup }) => {
           )}
           {showMovies && (
             <button
-              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-75 p-4"
+              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-amber-500 bg-opacity-75 p-4"
               onClick={() => setShowMovies(false)}
             >
               <div className="grid grid-cols-2 gap-6">
@@ -130,10 +130,10 @@ const MashupComponent = ({ movieMashup }) => {
             </button>
           )}
         </div>
-        <h3 className=" mb-4 font-movie-subtitle text-xl font-semibold text-gray-600">
+        <h3 className="mb-2 font-movie-subtitle text-xl font-semibold text-gray-600">
           {movieMashup.tagline}
         </h3>
-        <p className="mb-6 font-movie-body text-lg text-gray-800">
+        <p className="font-movie-body text-lg text-gray-800">
           {movieMashup.treatment}
         </p>
       </div>

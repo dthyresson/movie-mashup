@@ -140,18 +140,20 @@ export const Success = ({
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">Select two movies to mash</h1>
+      <h1 className="mb-4 text-center font-movie-subtitle text-3xl font-bold text-orange-600">
+        Ready for a cinematic adventure?
+      </h1>
       {selectedMovies.length === 0 && (
-        <p className="mb-4 text-blue-600">
-          Pick two movies to create a unique mashup!
+        <p className="mb-6 text-center font-movie-body text-xl text-red-500">
+          🥤 Pick two movies and let&apos;s create movie magic!
         </p>
       )}
       {selectedMovies.length === 1 && (
-        <p className="mb-4 text-blue-600">
-          Great! Now pick another movie to mash.
+        <p className="mb-6 text-center font-movie-body text-xl text-red-500">
+          🍿 Awesome choice! Now, let&apos;s find its perfect partner!
         </p>
       )}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -161,17 +163,17 @@ export const Success = ({
             tabIndex={0}
             aria-pressed={selectedMovies.includes(movie.id)}
             className={`h-full cursor-pointer ${
-              selectedMovies.includes(movie.id) ? 'ring-2 ring-blue-500' : ''
+              selectedMovies.includes(movie.id) ? 'ring-2 ring-orange-500' : ''
             }`}
           >
-            <div className="flex h-full flex-col overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md">
+            <div className="flex h-full flex-col rounded-lg border border-slate-100 p-4 transition-transform hover:scale-105 hover:bg-orange-50 hover:text-orange-500 hover:ring-2 hover:ring-red-400">
               <img
                 src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
                 alt={movie.title}
-                className="mx-auto w-48 rounded border border-gray-500 object-scale-down"
+                className="mx-auto w-48 object-scale-down "
               />
               <div className="flex flex-grow items-center justify-center p-4 text-center">
-                <h2 className="font-movie-title text-xl font-semibold text-gray-600">
+                <h2 className="font-movie-title text-xl font-semibold ">
                   {movie.title}
                 </h2>
               </div>

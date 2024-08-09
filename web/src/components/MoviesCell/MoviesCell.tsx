@@ -50,28 +50,37 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
     selectedMovies.includes(movie.id)
   )
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
-      <div className="mb-8 animate-pulse text-2xl font-bold">
-        Mashing {selectedMovieData[0].title} with {selectedMovieData[1].title}
+    <div className="flex h-[80vh] flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-red-100">
+      <div className="mb-8 text-4xl font-bold text-orange-600">
+        <span className="inline-block animate-bounce">🎬</span>{' '}
+        <span className="animate-pulse font-movie-title">
+          Movie Mashup Magic!
+        </span>{' '}
+        <span className="inline-block animate-bounce">🍿</span>
       </div>
-      <div className="flex space-x-8">
+      <div className="flex space-x-16 ">
         {selectedMovieData.map((movie, index) => (
           <div
             key={movie.id}
-            className={`text-center ${
+            className={`flex transform flex-col items-center ${
               index === 0
-                ? 'animate-bounce-horizontal'
-                : 'animate-bounce-horizontal-reverse'
+                ? 'animate-[wiggle_1s_ease-in-out_infinite]'
+                : 'animate-[wiggle_1s_ease-in-out_infinite_reverse]'
             }`}
           >
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
               alt={movie.title}
-              className="h-36 w-24 rounded object-cover"
+              className="h-64 w-48 object-scale-down transition-all duration-300"
             />
-            <p className="mt-2 text-sm">{movie.title}</p>
+            <p className="mt-4 text-center font-movie-title text-xl font-semibold text-gray-800">
+              {movie.title}
+            </p>
           </div>
         ))}
+      </div>
+      <div className="mt-12 animate-pulse font-movie-subtitle text-3xl font-bold text-orange-500">
+        Mashing in progress...
       </div>
     </div>
   )
@@ -107,6 +116,7 @@ export const Success = ({
       console.log('error', error)
       toast.error('Failed to create movie mashup')
       setIsMashing(false)
+      setSelectedMovies([])
     },
   })
 
@@ -153,7 +163,7 @@ export const Success = ({
           🍿 Awesome choice! Now, let&apos;s find its perfect partner!
         </p>
       )}
-      <div className="grid grid-cols-1 gap-4 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 p-8 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-0">
         {movies.map((movie) => (
           <div
             key={movie.id}

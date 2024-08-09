@@ -26,12 +26,19 @@ module.exports = {
           '0%, 100%': { transform: 'translateX(0)' },
           '50%': { transform: 'translateX(-25%)' },
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
       },
       animation: {
         'move-left': 'move-left 2s ease-in-out forwards',
         'move-right': 'move-right 2s ease-in-out forwards',
         'bounce-horizontal': 'bounce-horizontal 1s infinite',
         'bounce-horizontal-reverse': 'bounce-horizontal-reverse 1s infinite',
+        animation: {
+          wiggle: 'wiggle 1s ease-in-out infinite',
+        },
       },
     },
   },

@@ -53,10 +53,10 @@ const MovieMashupCard = ({
         />
         <div className="flex flex-grow flex-col justify-between space-y-4">
           <div className="mt-2 space-y-2">
-            <h2 className="font-movie-title text-xl font-bold">
+            <h2 className="text-center  font-movie-title text-2xl font-bold">
               {movieMashup.title}
             </h2>
-            <p className="font-movie-subtitle text-sm text-gray-500">
+            <p className="text-md font-movie-subtitle text-gray-500">
               {movieMashup.tagline}
             </p>
           </div>

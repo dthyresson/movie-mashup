@@ -91,16 +91,19 @@ const MashupComponent = ({ movieMashup }) => {
               className="absolute inset-0 flex cursor-pointer items-center justify-center bg-red-500 bg-opacity-75 p-4"
               onClick={() => setShowDescription(false)}
             >
-              <p className="text-center font-movie-body text-white">
+              <p className="text-center font-movie-body text-lg text-white">
                 {movieMashup.description}
               </p>
             </button>
           )}
           {showMovies && (
             <button
-              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-amber-500 bg-opacity-75 p-4"
+              className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center bg-amber-500 bg-opacity-75 p-4"
               onClick={() => setShowMovies(false)}
             >
+              <h4 className="mb-4 text-xl font-bold text-white">
+                Pick a movie for a new mashup
+              </h4>
               <div className="grid grid-cols-2 gap-6">
                 {[movieMashup.firstMovie, movieMashup.secondMovie].map(
                   (movie) => (
@@ -110,7 +113,7 @@ const MashupComponent = ({ movieMashup }) => {
                         e.stopPropagation()
                         handleMovieClick(movie.id)
                       }}
-                      className="group flex w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-sm transition-transform hover:scale-105 hover:shadow-md"
+                      className=" group flex w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-sm transition-transform hover:scale-105 hover:bg-orange-100 hover:shadow-md hover:ring-2 hover:ring-red-600"
                     >
                       <div className="flex items-center justify-center border border-gray-200">
                         <img
@@ -120,7 +123,7 @@ const MashupComponent = ({ movieMashup }) => {
                           className="max-h-36 max-w-full object-contain"
                         />
                       </div>
-                      <h3 className="mt-2 text-center font-movie-title font-semibold text-gray-800 group-hover:text-blue-600">
+                      <h3 className="mt-2 text-center font-movie-title font-semibold text-gray-800 group-hover:text-red-600 ">
                         {movie.title}
                       </h3>
                     </button>

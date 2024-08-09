@@ -1,5 +1,4 @@
 import type {
-  MovieMashup,
   MovieMashupsQuery,
   MovieMashupsQueryVariables,
 } from 'types/graphql'
@@ -46,7 +45,7 @@ const MovieMashupCard = ({
 }) => {
   return (
     <Link to={routes.movieMashup({ id: movieMashup.id })} className="block">
-      <div className="flex h-full flex-col rounded-lg border p-4 shadow-sm transition-shadow hover:shadow-md">
+      <div className="flex h-full flex-col rounded-lg border p-4 shadow-sm transition-shadow hover:scale-105 hover:cursor-pointer hover:shadow-md">
         <img
           src={movieMashup.photo}
           alt={movieMashup.title}

@@ -7,14 +7,14 @@ type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto font-movie-body">
       <Toaster />
-      <nav className="flex justify-between">
-        <h1 className="text-2xl font-bold">
+      <nav className="flex justify-between py-4">
+        <h1 className="font-movie-title text-3xl font-bold">
           <Link to={routes.movieMashups()}>💥🍿 Movie Mashup 🍿💥</Link>
         </h1>
         <ul>
-          <li>
+          <li className="font-movie-subtitle text-xl">
             <Link to={routes.movieMashups()}>Movie Mashups</Link>
           </li>
         </ul>

@@ -3,6 +3,11 @@ module.exports = {
   content: ['src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'movie-title': ['Bebas Neue', 'sans-serif'],
+        'movie-subtitle': ['Oswald', 'sans-serif'],
+        'movie-body': ['Roboto', 'sans-serif'],
+      },
       keyframes: {
         'move-left': {
           '0%': { transform: 'translateX(0)' },

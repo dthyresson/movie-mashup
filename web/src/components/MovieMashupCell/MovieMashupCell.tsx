@@ -58,7 +58,7 @@ const MashupComponent = ({ movieMashup }) => {
   return (
     <div className="mx-auto my-6 max-w-3xl overflow-hidden rounded-lg bg-white shadow-lg">
       <div className="flex flex-col items-center justify-center gap-4 p-6">
-        <h2 className="mb-2 text-3xl font-bold text-gray-800">
+        <h2 className="mb-2 font-movie-title text-3xl font-bold text-gray-800">
           {movieMashup.title}
         </h2>
         <div className="relative mb-6 aspect-video w-full max-w-2xl bg-gradient-to-b from-gray-200 via-gray-100 to-gray-300">
@@ -91,7 +91,7 @@ const MashupComponent = ({ movieMashup }) => {
               className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-75 p-4"
               onClick={() => setShowDescription(false)}
             >
-              <p className="text-center text-white">
+              <p className="text-center font-movie-body text-white">
                 {movieMashup.description}
               </p>
             </button>
@@ -104,13 +104,13 @@ const MashupComponent = ({ movieMashup }) => {
               <div className="grid grid-cols-2 gap-6">
                 {[movieMashup.firstMovie, movieMashup.secondMovie].map(
                   (movie) => (
-                    <div
+                    <button
                       key={movie.id}
                       onClick={(e) => {
                         e.stopPropagation()
                         handleMovieClick(movie.id)
                       }}
-                      className="group flex flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-sm transition-transform hover:scale-105 hover:shadow-md"
+                      className="group flex w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-sm transition-transform hover:scale-105 hover:shadow-md"
                     >
                       <div className="flex items-center justify-center border border-gray-200">
                         <img
@@ -120,20 +120,22 @@ const MashupComponent = ({ movieMashup }) => {
                           className="max-h-36 max-w-full object-contain"
                         />
                       </div>
-                      <h3 className="mt-2 text-center font-semibold text-gray-800 group-hover:text-blue-600">
+                      <h3 className="mt-2 text-center font-movie-title font-semibold text-gray-800 group-hover:text-blue-600">
                         {movie.title}
                       </h3>
-                    </div>
+                    </button>
                   )
                 )}
               </div>
             </button>
           )}
         </div>
-        <h3 className="mb-4 text-xl font-semibold text-gray-600">
+        <h3 className=" mb-4 font-movie-subtitle text-xl font-semibold text-gray-600">
           {movieMashup.tagline}
         </h3>
-        <p className="mb-6 text-lg text-gray-800">{movieMashup.treatment}</p>
+        <p className="mb-6 font-movie-body text-lg text-gray-800">
+          {movieMashup.treatment}
+        </p>
       </div>
     </div>
   )

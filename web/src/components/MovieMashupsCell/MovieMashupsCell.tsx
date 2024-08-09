@@ -53,10 +53,14 @@ const MovieMashupCard = ({
         />
         <div className="flex flex-grow flex-col justify-between space-y-4">
           <div className="mt-2 space-y-2">
-            <h2 className="text-xl font-bold">{movieMashup.title}</h2>
-            <p className="text-sm text-gray-500">{movieMashup.tagline}</p>
+            <h2 className="font-movie-title text-xl font-bold">
+              {movieMashup.title}
+            </h2>
+            <p className="font-movie-subtitle text-sm text-gray-500">
+              {movieMashup.tagline}
+            </p>
           </div>
-          <p className="mt-auto text-center text-xs text-gray-400">
+          <p className="mt-auto text-center font-movie-body text-xs text-gray-400">
             Mashup of {movieMashup.firstMovie.title} and{' '}
             {movieMashup.secondMovie.title}
           </p>

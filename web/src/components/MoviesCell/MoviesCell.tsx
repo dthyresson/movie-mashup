@@ -171,7 +171,7 @@ export const Success = ({
                 className="mx-auto w-48 rounded border border-gray-500 object-scale-down"
               />
               <div className="flex flex-grow items-center justify-center p-4 text-center">
-                <h2 className="text-xl font-semibold text-gray-600">
+                <h2 className="font-movie-title text-xl font-semibold text-gray-600">
                   {movie.title}
                 </h2>
               </div>

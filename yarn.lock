@@ -2387,6 +2387,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fal-ai/serverless-client@npm:^0.14.2":
+  version: 0.14.2
+  resolution: "@fal-ai/serverless-client@npm:0.14.2"
+  dependencies:
+    "@msgpack/msgpack": "npm:^3.0.0-beta2"
+    eventsource-parser: "npm:^1.1.2"
+    robot3: "npm:^0.4.1"
+  checksum: 10c0/834367f9f90d233ef9ba8cb0face946a762e5fc1cda697323128744909116359a8618bf560c2bc5329810522148a1ec0e9a81df032af3fc38dbc69e12db591af
+  languageName: node
+  linkType: hard
+
 "@fastify/accept-negotiator@npm:^1.0.0":
   version: 1.1.0
   resolution: "@fastify/accept-negotiator@npm:1.1.0"
@@ -3844,6 +3855,13 @@ __metadata:
   dependencies:
     chevrotain: "npm:^10.4.2"
   checksum: 10c0/155795a245d885d6cd3edac43a3eb57c8ba5c178d71b7595e278c3f7879f78511b9796d3b13e37c228cfdba9621715a2af450611b68aa4d58739fbe129e8200d
+  languageName: node
+  linkType: hard
+
+"@msgpack/msgpack@npm:^3.0.0-beta2":
+  version: 3.0.0-beta2
+  resolution: "@msgpack/msgpack@npm:3.0.0-beta2"
+  checksum: 10c0/f4dc4c210bb722f0f7407214334dda728263cce8eb0d3f9af1a40a48e13ce175b599de35a757dce5f1d92a74d3ce4d0242feb67516f308a626058d0f98f01c70
   languageName: node
   linkType: hard
 
@@ -5972,6 +5990,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@unkey/api@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "@unkey/api@npm:0.24.0"
+  dependencies:
+    "@unkey/rbac": "npm:^0.3.1"
+  checksum: 10c0/acabca3a2f5c0c97088db0ae0c0853d0f20c9a18acb904d4dda32e6a35f6508441d6f2d9cdcfc7957496901a9c5947c590a0d35a3cfbc3b140816b26d0cc42be
+  languageName: node
+  linkType: hard
+
+"@unkey/error@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@unkey/error@npm:0.2.0"
+  dependencies:
+    zod: "npm:^3.23.5"
+  checksum: 10c0/90ac6d878d5bb512020ccb06a5659b252c7aac03510b306af1d728d35ca901926dd49ee4422724cfa23e20068153cdef9e943b7316ef833829fa52960ca75ab8
+  languageName: node
+  linkType: hard
+
+"@unkey/ratelimit@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@unkey/ratelimit@npm:0.4.1"
+  dependencies:
+    "@unkey/api": "npm:^0.24.0"
+  checksum: 10c0/420910e63795b9db8ac0366b6da6b4dde7888cae1dbef026280a9ba7d29a8e62c530b4de134a71e6d611a53d45f5a76675ecc96de690449932e96de5fa9dc6f9
+  languageName: node
+  linkType: hard
+
+"@unkey/rbac@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@unkey/rbac@npm:0.3.1"
+  dependencies:
+    "@unkey/error": "npm:^0.2.0"
+    zod: "npm:^3.23.5"
+  checksum: 10c0/4a029791fe22e18048cc5d6342dffde61c47b2759a36d91c43ecaa2b384b53f4d1ac8ca90e7aad2e6abfa3db241591440889df7aff07493c14e4e30f31a3c5de
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-react@npm:4.2.1":
   version: 4.2.1
   resolution: "@vitejs/plugin-react@npm:4.2.1"
@@ -6871,8 +6926,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
+    "@fal-ai/serverless-client": "npm:^0.14.2"
     "@redwoodjs/api": "npm:7.7.3"
     "@redwoodjs/graphql-server": "npm:7.7.3"
+    "@unkey/ratelimit": "npm:^0.4.1"
   languageName: unknown
   linkType: soft
 
@@ -10935,6 +10992,13 @@ __metadata:
   version: 3.3.0
   resolution: "events@npm:3.3.0"
   checksum: 10c0/d6b6f2adbccbcda74ddbab52ed07db727ef52e31a61ed26db9feb7dc62af7fc8e060defa65e5f8af9449b86b52cc1a1f6a79f2eafcf4e62add2b7a1fa4a432f6
+  languageName: node
+  linkType: hard
+
+"eventsource-parser@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "eventsource-parser@npm:1.1.2"
+  checksum: 10c0/b38948bc81ae6c2a8b9c88383d4f8c2bfbaf23955827a9af68d39bc0550ae83cc400b197e814bea9aef6e0cdc9bae5afd95787418ee3d9ad01ffc4774cf1b84a
   languageName: node
   linkType: hard
 
@@ -18027,6 +18091,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"robot3@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "robot3@npm:0.4.1"
+  checksum: 10c0/28fb657bc5b4f81af4382c28f13a7c584ace990fb780ee544bde66bc7f9a7bba06d8019dc64fb10984e572ed7397f14e606eb55f341970575dfa169ddc2c28af
+  languageName: node
+  linkType: hard
+
 "rollup@npm:^3.27.1":
   version: 3.29.4
   resolution: "rollup@npm:3.29.4"
@@ -21321,5 +21392,12 @@ __metadata:
     compress-commons: "npm:^6.0.2"
     readable-stream: "npm:^4.0.0"
   checksum: 10c0/50f2fb30327fb9d09879abf7ae2493705313adf403e794b030151aaae00009162419d60d0519e807673ec04d442e140c8879ca14314df0a0192de3b233e8f28b
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.5":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
   languageName: node
   linkType: hard

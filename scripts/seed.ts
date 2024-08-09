@@ -1,28 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { db } from 'api/src/lib/db'
 
-// Manually apply seeds via the `yarn rw prisma db seed` command.
-//
-// Seeds automatically run the first time you run the `yarn rw prisma migrate dev`
-// command and every time you run the `yarn rw prisma migrate reset` command.
-//
-// See https://redwoodjs.com/docs/database-seeds for more info
+import { MOVIES } from '../data/movies'
 
 export default async () => {
-  try {
-    // Create your database records here! For example, seed some users:
-    //
-    // const users = [
-    //   { name: 'Alice', email: 'alice@redwoodjs.com },
-    //   { name: 'Bob', email: 'bob@redwoodjs.com },
-    // ]
-    //
-    // await db.user.createMany({ data: users })
-
-    console.info(
-      '\n  No seed data, skipping. See scripts/seed.ts to start seeding your database!\n'
-    )
-  } catch (error) {
-    console.error(error)
+  console.info('🎬 Seeding movies')
+  // if count is 0, seed
+  const count = await db.movie.count()
+  if (count === 0) {
+    try {
+      await db.movie.createMany({
+        data: MOVIES,
+      })
+      console.info('🍿 Movies seeded')
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    console.info('🍿 Movies already seeded')
   }
 }

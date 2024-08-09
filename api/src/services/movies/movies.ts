@@ -9,43 +9,44 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const movies: MoviesResolver = () => {
-  return db.movie.findMany({ orderBy: { title: 'asc' } })
+export const movies: MoviesResolver = async () => {
+  return await db.movie.findMany({ orderBy: { title: 'asc' } })
 }
 
-export const movie: MovieResolver = ({ id }) => {
-  return db.movie.findUnique({
+export const movie: MovieResolver = async ({ id }) => {
+  return await db.movie.findUnique({
     where: { id },
   })
 }
 
-export const createMovie: CreateMovieResolver = ({ input }) => {
-  return db.movie.create({
+export const createMovie: CreateMovieResolver = async ({ input }) => {
+  return await db.movie.create({
     data: input,
   })
 }
 
-export const updateMovie: UpdateMovieResolver = ({ id, input }) => {
-  return db.movie.update({
+export const updateMovie: UpdateMovieResolver = async ({ id, input }) => {
+  return await db.movie.update({
     data: input,
     where: { id },
   })
 }
 
-export const deleteMovie: DeleteMovieResolver = ({ id }) => {
-  return db.movie.delete({
+export const deleteMovie: DeleteMovieResolver = async ({ id }) => {
+  return await db.movie.delete({
     where: { id },
   })
 }
 
 export const Movie: MovieTypeResolvers = {
-  firstMovieMashups: (_obj, { root }) => {
-    return db.movie.findUnique({ where: { id: root?.id } }).firstMovieMashups()
+  firstMovieMashups: async (_obj, { root }) => {
+    return await db.movie
+      .findUnique({ where: { id: root?.id } })
+      .firstMovieMashups()
   },
-  secondMovieMashups: (_obj, { root }) => {
-    return db.movie.findUnique({ where: { id: root?.id } }).secondMovieMashups()
-  },
-  mashups: (_obj, { root }) => {
-    return db.movie.findUnique({ where: { id: root?.id } }).mashups()
+  secondMovieMashups: async (_obj, { root }) => {
+    return await db.movie
+      .findUnique({ where: { id: root?.id } })
+      .secondMovieMashups()
   },
 }

@@ -49,8 +49,8 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
     selectedMovies.includes(movie.id)
   )
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="text-2xl font-bold mb-8 animate-pulse">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <div className="mb-8 animate-pulse text-2xl font-bold">
         Mashing {selectedMovieData[0].title} with {selectedMovieData[1].title}
       </div>
       <div className="flex space-x-8">
@@ -59,7 +59,7 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
               alt={movie.title}
-              className="w-24 h-36 object-cover rounded"
+              className="h-36 w-24 rounded object-cover"
             />
             <p className="mt-2 text-sm">{movie.title}</p>
           </div>
@@ -127,18 +127,18 @@ export const Success = ({
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-4">Select two movies to mash</h1>
+      <h1 className="mb-4 text-2xl font-bold">Select two movies to mash</h1>
       {selectedMovies.length === 0 && (
-        <p className="text-blue-600 mb-4">
+        <p className="mb-4 text-blue-600">
           Pick two movies to create a unique mashup!
         </p>
       )}
       {selectedMovies.length === 1 && (
-        <p className="text-blue-600 mb-4">
+        <p className="mb-4 text-blue-600">
           Great! Now pick another movie to mash.
         </p>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -147,18 +147,18 @@ export const Success = ({
             role="button"
             tabIndex={0}
             aria-pressed={selectedMovies.includes(movie.id)}
-            className={`cursor-pointer h-full ${
+            className={`h-full cursor-pointer ${
               selectedMovies.includes(movie.id) ? 'ring-2 ring-blue-500' : ''
             }`}
           >
-            <div className="p-4 rounded-lg shadow-md overflow-hidden bg-gray-50 flex flex-col h-full">
+            <div className="flex h-full flex-col overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md">
               <img
                 src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
                 alt={movie.title}
-                className="w-48 object-scale-down rounded border border-gray-500 mx-auto"
+                className="mx-auto w-48 rounded border border-gray-500 object-scale-down"
               />
-              <div className="p-4 text-center flex-grow flex items-center justify-center">
-                <h2 className="text-xl text-gray-600 font-semibold">
+              <div className="flex flex-grow items-center justify-center p-4 text-center">
+                <h2 className="text-xl font-semibold text-gray-600">
                   {movie.title}
                 </h2>
               </div>

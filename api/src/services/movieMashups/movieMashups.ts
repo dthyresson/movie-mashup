@@ -9,13 +9,25 @@ import type {
 } from 'types/movieMashups'
 
 import { db } from 'src/lib/db'
+import { movieMashupGenerator } from 'src/lib/langbase'
+import { logger } from 'src/lib/logger'
+import { movie } from 'src/services/movies/movies'
 
 export const mashMovies: MashMoviesResolver = async ({ input }) => {
+  const firstMovie = await movie({ id: input.firstMovieId })
+  const secondMovie = await movie({ id: input.secondMovieId })
+
+  const { title, tagline, treatment } = await movieMashupGenerator({
+    firstMovieTitle: firstMovie.title,
+    secondMovieTitle: secondMovie.title,
+  })
+
+  logger.info({ title, tagline, treatment })
   const mashup = await db.movieMashup.create({
     data: {
-      title: 'foo',
-      tagline: 'bar',
-      treatment: 'baz',
+      title,
+      tagline,
+      treatment,
       photo: 'https://example.com/photo.jpg',
       firstMovie: {
         connect: { id: input.firstMovieId },

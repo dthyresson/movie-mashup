@@ -9,10 +9,10 @@ import type {
 } from 'types/movieMashups'
 
 import { db } from 'src/lib/db'
+import { generateMovieMashupPosterUrl } from 'src/lib/fal'
 import { movieMashupGenerator } from 'src/lib/langbase'
 import { logger } from 'src/lib/logger'
 import { movie } from 'src/services/movies/movies'
-
 export const mashMovies: MashMoviesResolver = async ({ input }) => {
   const firstMovie = await movie({ id: input.firstMovieId })
   const secondMovie = await movie({ id: input.secondMovieId })
@@ -23,12 +23,19 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
   })
 
   logger.info({ title, tagline, treatment })
+
+  const posterUrl = await generateMovieMashupPosterUrl({
+    title,
+    tagline,
+    treatment,
+  })
+
   const mashup = await db.movieMashup.create({
     data: {
       title,
       tagline,
       treatment,
-      photo: 'https://example.com/photo.jpg',
+      photo: posterUrl,
       firstMovie: {
         connect: { id: input.firstMovieId },
       },
@@ -76,8 +83,5 @@ export const MovieMashup: MovieMashupTypeResolvers = {
   },
   secondMovie: (_obj, { root }) => {
     return db.movieMashup.findUnique({ where: { id: root?.id } }).secondMovie()
-  },
-  movies: (_obj, { root }) => {
-    return db.movieMashup.findUnique({ where: { id: root?.id } }).movies()
   },
 }

@@ -56,7 +56,15 @@ export const Success = ({
     <div className="movie-mashup">
       <h2>{movieMashup.title}</h2>
       <p>{movieMashup.tagline}</p>
-      <img src={movieMashup.photo} alt={movieMashup.title} />
+      <div className="relative aspect-[4/3] w-full">
+        <img
+          className="absolute inset-0 h-full w-full rounded-md object-scale-down"
+          src={movieMashup.photo}
+          alt={movieMashup.title}
+          loading="lazy"
+        />
+      </div>
+
       <p>{movieMashup.treatment}</p>
 
       <div className="mashed-movies">
@@ -66,8 +74,10 @@ export const Success = ({
         >
           <h3>{movieMashup.firstMovie.title}</h3>
           <img
-            src={movieMashup.firstMovie.photo}
+            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movieMashup.firstMovie.photo}`}
             alt={movieMashup.firstMovie.title}
+            className="h-auto w-full object-cover"
+            loading="lazy"
           />
         </button>
         <button
@@ -76,8 +86,10 @@ export const Success = ({
         >
           <h3>{movieMashup.secondMovie.title}</h3>
           <img
-            src={movieMashup.secondMovie.photo}
+            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movieMashup.secondMovie.photo}`}
             alt={movieMashup.secondMovie.title}
+            className="h-auto w-full object-cover"
+            loading="lazy"
           />
         </button>
       </div>

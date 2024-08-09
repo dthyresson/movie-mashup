@@ -54,8 +54,15 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
         Mashing {selectedMovieData[0].title} with {selectedMovieData[1].title}
       </div>
       <div className="flex space-x-8">
-        {selectedMovieData.map((movie) => (
-          <div key={movie.id} className="text-center">
+        {selectedMovieData.map((movie, index) => (
+          <div
+            key={movie.id}
+            className={`text-center ${
+              index === 0
+                ? 'animate-bounce-horizontal'
+                : 'animate-bounce-horizontal-reverse'
+            }`}
+          >
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
               alt={movie.title}

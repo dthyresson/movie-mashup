@@ -1,44 +1,34 @@
 import * as fal from '@fal-ai/serverless-client'
 
 import { logger } from 'src/lib/logger'
-fal.config({
-  // Can also be auto-configured using environment variables:
-  credentials: process.env.FAL_KEY,
-})
 
-export const generatePhoto = async ({
-  description,
-  adjective,
-  animal,
-  color,
-}: {
-  description: string
-  adjective: string
-  animal: string
-  color: string
+export const generateMovieMashupPosterUrl = async ({
+  title,
+  tagline,
+  treatment,
 }) => {
+  logger.info({ treatment })
+
   const prompt = `
-    Illustrate: "${description}". In ${adjective} children's story style. Paint the ${animal} the color ${color}.
-  `
-  logger.debug(prompt, '>> prompt')
+    Artistic style of a movie poster with imagery depicting the following movie called ${title} with the following tagline: ${tagline}  :
 
-  const falModel = 'flux/schnell'
+    ${treatment}
+    `
+  // 'fast-lightning-sdxl'
   // "flux/schnell";
-  // "aura-flow";
-  // fast-lightning-sdxl
+  //"aura-flow"; //
+  const model = 'fast-lightning-sdxl'
   const options = {
-    image_size: 'square',
+    image_size: 'portrait_16_9',
+    num_inference_steps: 4,
     num_images: 1,
-    num_inference_steps: 6,
     enable_safety_checker: true,
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const result: any = await fal.run(`fal-ai/${falModel}`, {
+  } // flux
+  const result = await fal.run(`fal-ai/${model}`, {
     input: { prompt },
     ...options,
   })
-  const url = result.images[0].url
+  const posterUrl = result['images'][0].url
 
-  return url
+  return posterUrl
 }

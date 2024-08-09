@@ -117,26 +117,9 @@ export interface MovieMashupTypeResolvers {
       info?: GraphQLResolveInfo
     }
   ) => RTMovie | Promise<RTMovie> | (() => Promise<RTMovie>)
-
-  /** SDL: movies: [Movie]! */
-  movies: (
-    args: undefined,
-    obj: {
-      root: MovieMashupAsParent
-      context?: RedwoodGraphQLContext
-      info?: GraphQLResolveInfo
-    }
-  ) =>
-    | Array<RTMovie>
-    | Promise<Array<RTMovie>>
-    | (() => Promise<Array<RTMovie>>)
 }
 
 type MovieMashupAsParent = PMovieMashup & {
   firstMovie: () => PMovie | Promise<PMovie> | (() => Promise<PMovie>)
   secondMovie: () => PMovie | Promise<PMovie> | (() => Promise<PMovie>)
-  movies: () =>
-    | Array<PMovie>
-    | Promise<Array<PMovie>>
-    | (() => Promise<Array<PMovie>>)
 }

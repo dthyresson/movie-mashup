@@ -22,7 +22,6 @@ model Movie {
   photo              String
   firstMovieMashups  MovieMashup[] @relation("firstMovie")
   secondMovieMashups MovieMashup[] @relation("secondMovie")
-  mashups            MovieMashup[] @relation("movieInMashup")
 }
 
 model MovieMashup {
@@ -37,5 +36,4 @@ model MovieMashup {
   firstMovieId  String
   secondMovie   Movie    @relation("secondMovie", fields: [secondMovieId], references: [id])
   secondMovieId String
-  movies        Movie[]  @relation("movieInMashup")
 }

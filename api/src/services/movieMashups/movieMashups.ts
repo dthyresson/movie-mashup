@@ -17,8 +17,12 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
       tagline: 'bar',
       treatment: 'baz',
       photo: 'https://example.com/photo.jpg',
-      firstMovieId: input.firstMovieId,
-      secondMovieId: input.secondMovieId,
+      firstMovie: {
+        connect: { id: input.firstMovieId },
+      },
+      secondMovie: {
+        connect: { id: input.secondMovieId },
+      },
     },
   })
 

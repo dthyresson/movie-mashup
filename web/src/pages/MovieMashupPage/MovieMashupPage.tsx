@@ -1,15 +1,14 @@
 // import { Link, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
-const MovieMashupPage = () => {
+import MovieMashupCell from 'src/components/MovieMashupCell'
+
+const MovieMashupPage = ({ id }: { id: string }) => {
   return (
     <>
       <Metadata title="Smashup" description="Smashup page" />
 
-      <h1>SmashupPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/SmashupPage/SmashupPage.tsx</code>
-      </p>
+      <MovieMashupCell id={id} />
     </>
   )
 }

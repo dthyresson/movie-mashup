@@ -6,6 +6,7 @@ export const schema = gql`
     title: String!
     tagline: String!
     treatment: String!
+    description: String!
     photo: String!
     firstMovie: Movie!
     firstMovieId: String!
@@ -23,6 +24,7 @@ export const schema = gql`
     title: String!
     tagline: String!
     treatment: String!
+    description: String!
     photo: String!
     firstMovieId: String!
     secondMovieId: String!
@@ -32,6 +34,7 @@ export const schema = gql`
     title: String
     tagline: String
     treatment: String
+    description: String
     photo: String
     firstMovieId: String
     secondMovieId: String

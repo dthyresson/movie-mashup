@@ -21,6 +21,7 @@ export interface CreateMovieInput {
 
 export interface CreateMovieMashupInput {
   __typename?: 'CreateMovieMashupInput'
+  description: string
   firstMovieId: string
   photo: string
   secondMovieId: string
@@ -70,6 +71,7 @@ export interface UpdateMovieInput {
 
 export interface UpdateMovieMashupInput {
   __typename?: 'UpdateMovieMashupInput'
+  description?: string | null
   firstMovieId?: string | null
   photo?: string | null
   secondMovieId?: string | null

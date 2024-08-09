@@ -20,6 +20,7 @@ export const QUERY: TypedDocumentNode<
       title
       tagline
       treatment
+      description
       photo
       firstMovie {
         id
@@ -53,9 +54,9 @@ export const Success = ({
   }
 
   return (
-    <div className="movie-mashup">
-      <h2>{movieMashup.title}</h2>
-      <p>{movieMashup.tagline}</p>
+    <div className="flex flex-col gap-4">
+      <h2 className="text-2xl font-bold">{movieMashup.title}</h2>
+      <h3 className="text-lg font-semibold">{movieMashup.tagline}</h3>
       <div className="relative aspect-[4/3] w-full">
         <img
           className="absolute inset-0 h-full w-full rounded-md object-scale-down"
@@ -64,8 +65,8 @@ export const Success = ({
           loading="lazy"
         />
       </div>
-
-      <p>{movieMashup.treatment}</p>
+      <p className="text-sm text-gray-500">{movieMashup.description}</p>
+      <p className="text-md text-gray-800">{movieMashup.treatment}</p>
 
       <div className="mashed-movies">
         <button

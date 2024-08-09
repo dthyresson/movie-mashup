@@ -31,6 +31,7 @@ model MovieMashup {
   title         String
   tagline       String
   treatment     String
+  description   String
   photo         String
   firstMovie    Movie    @relation("firstMovie", fields: [firstMovieId], references: [id])
   firstMovieId  String

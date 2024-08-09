@@ -6,20 +6,25 @@ export const generateMovieMashupPosterUrl = async ({
   title,
   tagline,
   treatment,
+  description,
 }) => {
-  logger.info({ treatment })
+  logger.info({ title, tagline, treatment, description })
 
   const prompt = `
-    Artistic style of a movie poster with imagery depicting the following movie called ${title} with the following tagline: ${tagline}  :
+    Artistic style of a movie poster with imagery for the movie called ${tagline} scene:
 
-    ${treatment}
+    Scene: ${description}
+
+    Include the title "${title}" and tagline "${tagline}" in the poster.
+
+    Include credits and rating.
     `
   // 'fast-lightning-sdxl'
   // "flux/schnell";
   //"aura-flow"; //
-  const model = 'fast-lightning-sdxl'
+  const model = 'flux/schnell'
   const options = {
-    image_size: 'portrait_16_9',
+    image_size: 'landscape_16_9',
     num_inference_steps: 4,
     num_images: 1,
     enable_safety_checker: true,

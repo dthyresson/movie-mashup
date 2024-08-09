@@ -9,6 +9,7 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 // import { Link, routes } from '@redwoodjs/router'
 
@@ -101,6 +102,11 @@ export const Success = ({
     onCompleted: (data) => {
       console.log('data', data)
       navigate(routes.movieMashup({ id: data.mashMovies.id }))
+    },
+    onError: (error) => {
+      console.log('error', error)
+      toast.error('Failed to create movie mashup')
+      setIsMashing(false)
     },
   })
 

@@ -8,6 +8,8 @@ import type {
   MashMoviesResolver,
 } from 'types/movieMashups'
 
+import { ValidationError } from '@redwoodjs/graphql-server'
+
 import { db } from 'src/lib/db'
 import { generateMovieMashupPosterUrl } from 'src/lib/fal'
 import { movieMashupGenerator } from 'src/lib/langbase'
@@ -17,35 +19,43 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
   const firstMovie = await movie({ id: input.firstMovieId })
   const secondMovie = await movie({ id: input.secondMovieId })
 
-  const { title, tagline, treatment } = await movieMashupGenerator({
-    firstMovieTitle: firstMovie.title,
-    secondMovieTitle: secondMovie.title,
-  })
+  try {
+    const { title, tagline, treatment, description } =
+      await movieMashupGenerator({
+        firstMovieTitle: firstMovie.title,
+        secondMovieTitle: secondMovie.title,
+      })
 
-  logger.info({ title, tagline, treatment })
+    logger.info({ title, tagline, treatment, description })
 
-  const posterUrl = await generateMovieMashupPosterUrl({
-    title,
-    tagline,
-    treatment,
-  })
-
-  const mashup = await db.movieMashup.create({
-    data: {
+    const posterUrl = await generateMovieMashupPosterUrl({
       title,
       tagline,
       treatment,
-      photo: posterUrl,
-      firstMovie: {
-        connect: { id: input.firstMovieId },
-      },
-      secondMovie: {
-        connect: { id: input.secondMovieId },
-      },
-    },
-  })
+      description,
+    })
 
-  return mashup
+    const mashup = await db.movieMashup.create({
+      data: {
+        title,
+        tagline,
+        treatment,
+        description,
+        photo: posterUrl,
+        firstMovie: {
+          connect: { id: input.firstMovieId },
+        },
+        secondMovie: {
+          connect: { id: input.secondMovieId },
+        },
+      },
+    })
+
+    return mashup
+  } catch (error) {
+    logger.error(error)
+    throw new ValidationError('Failed to create movie mashup')
+  }
 }
 
 export const movieMashups: MovieMashupsResolver = () => {

@@ -69,8 +69,26 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
   )
 }
 
-export const Success = ({ movies }: CellSuccessProps) => {
-  const [selectedMovies, setSelectedMovies] = useState<number[]>([])
+interface MoviesCellProps extends CellSuccessProps {
+  firstMovieId: string
+  secondMovieId: string
+}
+
+export const Success = ({
+  movies,
+  firstMovieId,
+  secondMovieId,
+}: MoviesCellProps) => {
+  const [selectedMovies, setSelectedMovies] = useState<string[]>(() => {
+    const initialSelection: string[] = []
+    if (firstMovieId && firstMovieId.trim() !== '') {
+      initialSelection.push(firstMovieId)
+    }
+    if (secondMovieId && secondMovieId.trim() !== '') {
+      initialSelection.push(secondMovieId)
+    }
+    return initialSelection
+  })
   const [isMashing, setIsMashing] = useState(false)
   const [mashMovies] = useMutation(GENERATE_MASHUP_MUTATION, {
     onCompleted: (data) => {
@@ -79,7 +97,7 @@ export const Success = ({ movies }: CellSuccessProps) => {
     },
   })
 
-  const handleMovieSelect = (movieId: number) => {
+  const handleMovieSelect = (movieId: string) => {
     if (selectedMovies.includes(movieId)) {
       setSelectedMovies(selectedMovies.filter((id) => id !== movieId))
     } else if (selectedMovies.length < 2) {
@@ -108,33 +126,46 @@ export const Success = ({ movies }: CellSuccessProps) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {movies.map((movie) => (
-        <div
-          key={movie.id}
-          onClick={() => handleMovieSelect(movie.id)}
-          onKeyDown={(e) => e.key === 'Enter' && handleMovieSelect(movie.id)}
-          role="button"
-          tabIndex={0}
-          aria-pressed={selectedMovies.includes(movie.id)}
-          className={`cursor-pointer h-full ${
-            selectedMovies.includes(movie.id) ? 'ring-2 ring-blue-500' : ''
-          }`}
-        >
-          <div className="p-4 rounded-lg shadow-md overflow-hidden bg-gray-50 flex flex-col h-full">
-            <img
-              src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
-              alt={movie.title}
-              className="w-48 object-scale-down rounded border border-gray-500 mx-auto"
-            />
-            <div className="p-4 text-center flex-grow flex items-center justify-center">
-              <h2 className="text-xl text-gray-600 font-semibold">
-                {movie.title}
-              </h2>
+    <>
+      <h1 className="text-2xl font-bold mb-4">Select two movies to mash</h1>
+      {selectedMovies.length === 0 && (
+        <p className="text-blue-600 mb-4">
+          Pick two movies to create a unique mashup!
+        </p>
+      )}
+      {selectedMovies.length === 1 && (
+        <p className="text-blue-600 mb-4">
+          Great! Now pick another movie to mash.
+        </p>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {movies.map((movie) => (
+          <div
+            key={movie.id}
+            onClick={() => handleMovieSelect(movie.id)}
+            onKeyDown={(e) => e.key === 'Enter' && handleMovieSelect(movie.id)}
+            role="button"
+            tabIndex={0}
+            aria-pressed={selectedMovies.includes(movie.id)}
+            className={`cursor-pointer h-full ${
+              selectedMovies.includes(movie.id) ? 'ring-2 ring-blue-500' : ''
+            }`}
+          >
+            <div className="p-4 rounded-lg shadow-md overflow-hidden bg-gray-50 flex flex-col h-full">
+              <img
+                src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
+                alt={movie.title}
+                className="w-48 object-scale-down rounded border border-gray-500 mx-auto"
+              />
+              <div className="p-4 text-center flex-grow flex items-center justify-center">
+                <h2 className="text-xl text-gray-600 font-semibold">
+                  {movie.title}
+                </h2>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   )
 }

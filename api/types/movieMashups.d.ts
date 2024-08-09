@@ -11,11 +11,24 @@ import type {
   Movie as RTMovie,
 } from './shared-return-types'
 import type {
+  MashMoviesInput,
   CreateMovieMashupInput,
   UpdateMovieMashupInput,
-  Query,
   Mutation,
+  Query,
 } from './shared-schema-types'
+
+/** SDL: mashMovies(input: MashMoviesInput!): MovieMashup! */
+export interface MashMoviesResolver {
+  (
+    args: { input: MashMoviesInput },
+    obj?: {
+      root: Mutation
+      context: RedwoodGraphQLContext
+      info: GraphQLResolveInfo
+    }
+  ): Promise<RTMovieMashup>
+}
 
 /** SDL: movieMashups: [MovieMashup!]! */
 export interface MovieMashupsResolver {

@@ -5,9 +5,25 @@ import type {
   UpdateMovieMashupResolver,
   DeleteMovieMashupResolver,
   MovieMashupTypeResolvers,
+  MashMoviesResolver,
 } from 'types/movieMashups'
 
 import { db } from 'src/lib/db'
+
+export const mashMovies: MashMoviesResolver = async ({ input }) => {
+  const mashup = await db.movieMashup.create({
+    data: {
+      title: 'foo',
+      tagline: 'bar',
+      treatment: 'baz',
+      photo: 'https://example.com/photo.jpg',
+      firstMovieId: input.firstMovieId,
+      secondMovieId: input.secondMovieId,
+    },
+  })
+
+  return mashup
+}
 
 export const movieMashups: MovieMashupsResolver = () => {
   return db.movieMashup.findMany()

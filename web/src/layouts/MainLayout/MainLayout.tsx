@@ -3,7 +3,7 @@ type MainLayoutProps = {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  return <>{children}</>
+  return <main className="container mx-auto">{children}</main>
 }
 
 export default MainLayout

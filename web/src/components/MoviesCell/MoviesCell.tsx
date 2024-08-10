@@ -178,7 +178,7 @@ export const Success = ({
           >
             <div className="flex h-full flex-col rounded-lg border border-slate-100 p-4 transition-transform hover:scale-105 hover:bg-orange-50 hover:text-orange-500 hover:ring-2 hover:ring-red-400">
               <div className="flex h-full flex-col">
-                <h2 className="mb-4 text-center font-movie-title text-xl font-semibold">
+                <h2 className="mb-4 text-center font-movie-title text-xl font-normal">
                   {movie.title}
                 </h2>
                 <div className="flex flex-grow items-end justify-center">

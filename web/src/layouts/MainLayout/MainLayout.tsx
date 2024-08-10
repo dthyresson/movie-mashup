@@ -10,7 +10,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <main className="container mx-auto font-movie-body">
       <Toaster />
       <nav className="flex justify-between py-4">
-        <h1 className="font-movie-title text-3xl font-bold">
+        <h1 className="font-movie-title text-3xl font-normal">
           <Link className="hover:text-orange-500" to={routes.movieMashups()}>
             💥🍿 Movie Mashup 🍿💥
           </Link>

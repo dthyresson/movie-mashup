@@ -58,12 +58,12 @@ const MashupComponent = ({ movieMashup }) => {
   return (
     <div className="mx-auto my-0 max-w-3xl  bg-white">
       <div className="flex flex-col items-center justify-center gap-4 p-6">
-        <h2 className="mb-2 font-movie-title text-3xl font-bold text-gray-800">
+        <h2 className="mb-2 font-movie-title text-3xl font-normal text-gray-800">
           {movieMashup.title}
         </h2>
         <div className="relative mb-2 aspect-video w-full max-w-2xl bg-gradient-to-b from-slate-50 via-slate-200 to-slate-100">
           <img
-            className="border-gra -200 absolute inset-0 h-full w-full  object-contain p-4"
+            className="border-gra -200 absolute inset-0 h-full w-full object-contain p-4"
             src={movieMashup.photo}
             alt={movieMashup.title}
             loading="lazy"
@@ -123,7 +123,7 @@ const MashupComponent = ({ movieMashup }) => {
                           className="max-h-36 max-w-full object-contain"
                         />
                       </div>
-                      <h3 className="mt-2 text-center font-movie-title font-semibold text-gray-800 group-hover:text-red-600 ">
+                      <h3 className="mt-2 truncate text-center font-movie-title font-normal text-gray-800 group-hover:text-red-600 ">
                         {movie.title}
                       </h3>
                     </button>

@@ -6,7 +6,7 @@ module.exports = {
       fontFamily: {
         'movie-title': ['Spicy Rice', 'sans-serif'],
 
-        'movie-subtitle': ['Oswald', 'sans-serif'],
+        'movie-subtitle': ['Mulish', 'sans-serif'],
         'movie-body': ['Roboto', 'sans-serif'],
       },
       keyframes: {

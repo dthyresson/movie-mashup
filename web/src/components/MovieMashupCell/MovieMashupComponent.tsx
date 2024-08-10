@@ -15,7 +15,7 @@ const OverlayButton = ({ onClick, children, className }) => (
 const OverlayContent = ({ show, onClose, className, children }) =>
   show && (
     <button
-      className={`absolute inset-0 flex cursor-pointer items-center justify-center bg-opacity-75 p-4 ${className}`}
+      className={`absolute inset-0 flex cursor-pointer items-center justify-center overflow-y-scroll  bg-opacity-75 p-4 ${className}`}
       onClick={onClose}
     >
       {children}
@@ -39,7 +39,7 @@ const MovieButton = ({ movie, onClick }) => (
         className="max-h-16 max-w-screen-sm object-contain lg:max-h-36 lg:max-w-full"
       />
     </div>
-    <h3 className="mt-2 truncate text-center font-movie-title font-normal text-gray-800 group-hover:text-red-600 ">
+    <h3 className="text-normal mt-2 truncate text-center font-movie-title text-sm text-gray-800 group-hover:text-red-600 md:text-sm">
       {movie.title}
     </h3>
   </button>
@@ -60,7 +60,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
         </h2>
         <div className="relative mb-2 aspect-video w-full max-w-2xl bg-gradient-to-b from-slate-50 via-slate-200 to-slate-100">
           <img
-            className="border-gra -200 absolute inset-0 h-full w-full object-contain p-4"
+            className="absolute inset-0 h-full w-full border-gray-200 object-contain p-4"
             src={movieMashup.photo}
             alt={movieMashup.title}
             loading="lazy"
@@ -80,16 +80,16 @@ const MovieMashupComponent = ({ movieMashup }) => {
           <OverlayContent
             show={showDescription}
             onClose={() => setShowDescription(false)}
-            className="bg-red-500"
+            className="min-h-[50vh] bg-red-500"
           >
-            <p className="text-center font-movie-body text-lg text-white">
+            <p className="overflow-clip text-center font-movie-body text-sm text-white lg:text-lg">
               {movieMashup.description}
             </p>
           </OverlayContent>
           <OverlayContent
             show={showMovies}
             onClose={() => setShowMovies(false)}
-            className="bg-amber-500"
+            className="min-h-[50vh] bg-amber-500"
           >
             <div className="mx-auto flex w-full max-w-md flex-col gap-4">
               <h4 className="mb-4 text-xl font-bold text-white">

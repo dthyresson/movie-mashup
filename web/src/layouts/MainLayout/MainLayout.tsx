@@ -57,6 +57,12 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <Toaster
         toastOptions={{
           className: 'font-movie-title text-lg',
+          success: {
+            icon: <>🍿</>,
+          },
+          error: {
+            icon: <>💥</>,
+          },
         }}
       />
       <Header />

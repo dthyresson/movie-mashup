@@ -56,8 +56,8 @@ const MovieSelector = ({
 
   useEffect(() => {
     if (selectedMovies.length === 1) {
-      toast.success("🍿 Awesome choice! Now, let's find its perfect partner!", {
-        duration: 3000,
+      toast.success("Awesome choice! Now, let's find its perfect partner!", {
+        duration: 1_250,
       })
     }
   }, [selectedMovies])

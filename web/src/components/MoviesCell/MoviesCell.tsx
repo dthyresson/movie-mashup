@@ -9,7 +9,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import FailureComponent from 'src/components/FailureComponent'
 import LoadingComponent from 'src/components/LoadingComponent'
-import MashingAnimation from 'src/components/MoviesCell/MaskingAnimation'
+import MashingAnimation from 'src/components/MoviesCell/MashingAnimation'
 import MovieSelector from 'src/components/MoviesCell/MovieSelector'
 import type { MoviesCellProps } from 'src/components/MoviesCell/types'
 export const beforeQuery = (props) => {

@@ -7,7 +7,7 @@ type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <main className="container mx-auto font-movie-body">
+    <main className=" bg-orange-50 px-4 font-movie-body">
       <Toaster />
       <nav className="flex justify-between py-4">
         <h1 className="md:text-xml font-movie-title text-2xl font-normal lg:text-3xl">
@@ -17,7 +17,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         </h1>
         <Link
           to={routes.newMovieMashup()}
-          className=" flex px-2 py-1 hover:text-orange-500"
+          className="flex px-2 py-1 hover:text-orange-500"
         >
           <span className="mr-2">🎬</span>
           <span className="text-normal flex-grow text-right font-movie-title md:text-lg lg:text-lg">
@@ -25,7 +25,9 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           </span>
         </Link>
       </nav>
-      {children}
+      <div className="container mx-auto rounded-md border border-orange-100 bg-white p-4">
+        {children}
+      </div>
       <footer className="mt-4 flex items-center justify-between border-t border-orange-200 px-4 py-4 text-sm text-gray-500">
         <p>
           Made with ❤️ by{' '}

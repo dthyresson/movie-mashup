@@ -52,11 +52,9 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
   return (
     <div className="flex h-[80vh] flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-red-100 px-4">
       <div className="mb-8 text-center text-2xl font-bold text-orange-600 sm:text-3xl md:text-4xl">
-        <span className="inline-block animate-bounce">🎬</span>{' '}
-        <span className="inline-block animate-bounce animate-pulse font-movie-title ">
-          Mashing ...
-        </span>{' '}
-        <span className="inline-block animate-bounce">🍿</span>
+        <span className="inline-block animate-spin">🎬</span>
+        <span className="mx-4 inline-block font-movie-title">Mashing!</span>
+        <span className="inline-block animate-spin">🍿</span>
       </div>
       <div className="flex flex-col space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0 md:space-x-16">
         {selectedMovieData.map((movie, index) => (
@@ -71,7 +69,7 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
               alt={movie.title}
-              className=" h-12 object-scale-down transition-all duration-300  md:h-24 md:w-24 lg:h-36"
+              className="h-8 object-scale-down transition-all duration-300 md:h-14 lg:h-20"
             />
             <p className="mt-4 text-center font-movie-title text-lg font-normal text-gray-800 sm:text-xl">
               {movie.title}
@@ -163,7 +161,7 @@ export const Success = ({
           🥤 Pick two movies and let&apos;s create movie magic!
         </p>
       )}
-      <div className="grid grid-cols-1 gap-4 p-8 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-0">
+      <div className="grid grid-cols-2 gap-4 p-8 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-0">
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -176,7 +174,7 @@ export const Success = ({
               selectedMovies.includes(movie.id) ? 'ring-2 ring-orange-500' : ''
             }`}
           >
-            <div className="flex h-full flex-col rounded-lg border border-slate-100 p-4 transition-transform hover:scale-105 hover:bg-orange-50 hover:text-orange-500 hover:ring-2 hover:ring-red-400">
+            <div className="flex h-full flex-col rounded-lg border border-orange-100 p-4 transition-transform hover:scale-105 hover:bg-orange-50 hover:text-orange-500 hover:ring-2 hover:ring-red-400">
               <div className="flex h-full flex-col">
                 <h2 className="mb-4 text-center font-movie-title text-xl font-normal">
                   {movie.title}
@@ -185,7 +183,7 @@ export const Success = ({
                   <img
                     src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
                     alt={movie.title}
-                    className="w-48 border border-slate-100 object-contain"
+                    className="w-20 rounded-md border border-slate-100 object-contain shadow-md md:w-24 lg:w-48"
                   />
                 </div>
               </div>

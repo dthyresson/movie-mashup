@@ -50,15 +50,15 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
     selectedMovies.includes(movie.id)
   )
   return (
-    <div className="flex h-[80vh] flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-red-100">
-      <div className="mb-8 text-4xl font-bold text-orange-600">
+    <div className="flex h-[80vh] flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-red-100 px-4">
+      <div className="mb-8 text-center text-2xl font-bold text-orange-600 sm:text-3xl md:text-4xl">
         <span className="inline-block animate-bounce">🎬</span>{' '}
-        <span className="animate-pulse font-movie-title">
-          Movie Mashup Magic!
+        <span className="inline-block animate-bounce animate-pulse font-movie-title ">
+          Mashing ...
         </span>{' '}
         <span className="inline-block animate-bounce">🍿</span>
       </div>
-      <div className="flex space-x-16 ">
+      <div className="flex flex-col space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0 md:space-x-16">
         {selectedMovieData.map((movie, index) => (
           <div
             key={movie.id}
@@ -71,16 +71,13 @@ const MashingAnimation = ({ movies, selectedMovies }) => {
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.photo}`}
               alt={movie.title}
-              className="h-64 w-48 object-scale-down transition-all duration-300"
+              className=" h-12 object-scale-down transition-all duration-300  md:h-24 md:w-24 lg:h-36"
             />
-            <p className="mt-4 text-center font-movie-title text-xl font-semibold text-gray-800">
+            <p className="mt-4 text-center font-movie-title text-lg font-normal text-gray-800 sm:text-xl">
               {movie.title}
             </p>
           </div>
         ))}
-      </div>
-      <div className="mt-12 animate-pulse font-movie-subtitle text-3xl font-bold text-orange-500">
-        Mashing in progress...
       </div>
     </div>
   )
@@ -158,11 +155,11 @@ export const Success = ({
 
   return (
     <>
-      <h1 className="mb-4 text-center font-movie-subtitle text-3xl font-bold text-orange-600">
+      <h1 className="mb-4 px-2 text-center font-movie-subtitle text-3xl font-bold text-orange-600">
         Ready for a cinematic adventure?
       </h1>
       {selectedMovies.length === 0 && (
-        <p className="mb-6 text-center font-movie-body text-xl text-red-500">
+        <p className="mb-6 px-2 text-center font-movie-body text-xl text-red-500">
           🥤 Pick two movies and let&apos;s create movie magic!
         </p>
       )}

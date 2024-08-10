@@ -12,7 +12,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <nav className="flex justify-between py-4">
         <h1 className="md:text-xml font-movie-title text-2xl font-normal lg:text-3xl">
           <Link className="hover:text-orange-500" to={routes.movieMashups()}>
-            💥🍿 Movie Mashup 🍿💥
+            💥🍿 Movie Mashup
           </Link>
         </h1>
         <Link

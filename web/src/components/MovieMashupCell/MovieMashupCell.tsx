@@ -5,7 +5,7 @@ import type {
   FindMovieMashupQueryVariables,
 } from 'types/graphql'
 
-import { navigate, routes } from '@redwoodjs/router'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -139,6 +139,25 @@ const MashupComponent = ({ movieMashup }) => {
         <p className="font-movie-body text-lg text-gray-800">
           {movieMashup.treatment}
         </p>
+        <nav className="mt-4 flex items-center justify-center">
+          <Link
+            to={routes.newMovieMashup({
+              firstMovieId: movieMashup.firstMovie.id,
+            })}
+            className="text-normal mr-2 font-movie-body text-gray-500 hover:text-orange-500"
+          >
+            {movieMashup.firstMovie.title}
+          </Link>
+          💥
+          <Link
+            to={routes.newMovieMashup({
+              secondMovieId: movieMashup.secondMovie.id,
+            })}
+            className="text-normal ml-2 font-movie-body font-normal text-gray-500 hover:text-orange-500"
+          >
+            {movieMashup.secondMovie.title}
+          </Link>
+        </nav>
       </div>
     </div>
   )

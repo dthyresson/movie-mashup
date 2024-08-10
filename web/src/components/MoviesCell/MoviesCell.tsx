@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import type { MoviesQuery, MoviesQueryVariables } from 'types/graphql'
 
@@ -144,6 +144,14 @@ export const Success = ({
     }
   }
 
+  useEffect(() => {
+    if (selectedMovies.length === 1) {
+      toast.success("🍿 Awesome choice! Now, let's find its perfect partner!", {
+        duration: 3000,
+      })
+    }
+  }, [selectedMovies])
+
   if (isMashing) {
     return <MashingAnimation movies={movies} selectedMovies={selectedMovies} />
   }
@@ -156,11 +164,6 @@ export const Success = ({
       {selectedMovies.length === 0 && (
         <p className="mb-6 text-center font-movie-body text-xl text-red-500">
           🥤 Pick two movies and let&apos;s create movie magic!
-        </p>
-      )}
-      {selectedMovies.length === 1 && (
-        <p className="mb-6 text-center font-movie-body text-xl text-red-500">
-          🍿 Awesome choice! Now, let&apos;s find its perfect partner!
         </p>
       )}
       <div className="grid grid-cols-1 gap-4 p-8 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-0">

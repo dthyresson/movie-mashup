@@ -54,7 +54,11 @@ const Footer = () => (
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <main className="flex min-h-screen flex-col bg-orange-50 px-4 font-movie-body">
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: 'font-movie-title text-lg',
+        }}
+      />
       <Header />
       <div className="container mx-auto flex-grow rounded-md border border-orange-100 bg-white p-4">
         {children}

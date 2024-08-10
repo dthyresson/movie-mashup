@@ -3,6 +3,7 @@ import type {
   MovieMashupsQueryVariables,
 } from 'types/graphql'
 
+import { Link, routes } from '@redwoodjs/router'
 import type {
   CellFailureProps,
   CellSuccessProps,
@@ -34,7 +35,22 @@ export const QUERY: TypedDocumentNode<
 `
 export const Loading = () => <LoadingComponent />
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div className="flex h-[80vh] flex-col items-center justify-center text-center">
+    <p className="mb-6 font-movie-title text-2xl">
+      Let&apos;s mash some movies!
+    </p>
+    <Link
+      to={routes.newMovieMashup()}
+      className="flex items-center px-2 py-1 hover:text-orange-500"
+    >
+      <span className="mr-2">🎬</span>
+      <span className="text-normal font-movie-title md:text-lg lg:text-lg">
+        New Mashup!
+      </span>
+    </Link>
+  </div>
+)
 
 export const Failure = ({ error }: CellFailureProps) => (
   <FailureComponent error={error} />

@@ -8,7 +8,10 @@ const NewMovieMashupPage = () => {
   const { firstMovieId, secondMovieId } = useParams()
   return (
     <>
-      <Metadata title="NewMovieMashup" description="NewMovieMashup page" />
+      <Metadata
+        title="Mashup!"
+        description="Pick 2 movies and let's create movie magic!"
+      />
 
       <MoviesCell firstMovieId={firstMovieId} secondMovieId={secondMovieId} />
     </>

@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import { Metadata } from '@redwoodjs/web'
 import { Toaster } from '@redwoodjs/web/toast'
 
 type MainLayoutProps = {
@@ -53,7 +54,8 @@ const Footer = () => (
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <main className="flex min-h-screen flex-col bg-orange-50 px-4 font-movie-body">
+    <>
+      <Metadata />
       <Toaster
         toastOptions={{
           className: 'font-movie-title text-lg',
@@ -64,13 +66,15 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             icon: <>💥</>,
           },
         }}
-      />
-      <Header />
-      <div className="container mx-auto flex-grow rounded-md border border-orange-100 bg-white p-4">
-        {children}
-      </div>
-      <Footer />
-    </main>
+      />{' '}
+      <main className="flex min-h-screen flex-col bg-orange-50 px-4 font-movie-body">
+        <Header />
+        <div className="container mx-auto flex-grow rounded-md border border-orange-100 bg-white p-4">
+          {children}
+        </div>
+        <Footer />
+      </main>
+    </>
   )
 }
 

@@ -3,6 +3,7 @@ import type {
   FindMovieMashupQueryVariables,
 } from 'types/graphql'
 
+import { Metadata } from '@redwoodjs/web'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -52,5 +53,15 @@ export const Failure = ({
 export const Success = ({
   movieMashup,
 }: CellSuccessProps<FindMovieMashupQuery, FindMovieMashupQueryVariables>) => {
-  return <MovieMashupComponent movieMashup={movieMashup} />
+  return (
+    <>
+      <Metadata
+        title={movieMashup.title}
+        description={movieMashup.tagline}
+        ogImage={movieMashup.photo}
+      />
+
+      <MovieMashupComponent movieMashup={movieMashup} />
+    </>
+  )
 }

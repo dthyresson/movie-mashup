@@ -36,7 +36,7 @@ const MovieButton = ({ movie, onClick }) => (
         src={`https://www.themoviedb.org/t/p/w185_and_h278_bestv2${movie.photo}`}
         alt={movie.title}
         loading="lazy"
-        className="max-h-36 max-w-full object-contain"
+        className="max-h-16 max-w-screen-sm object-contain lg:max-h-36 lg:max-w-full"
       />
     </div>
     <h3 className="mt-2 truncate text-center font-movie-title font-normal text-gray-800 group-hover:text-red-600 ">
@@ -91,7 +91,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
             onClose={() => setShowMovies(false)}
             className="bg-amber-500"
           >
-            <div className="mx-auto flex w-full max-w-xs flex-col gap-4">
+            <div className="mx-auto flex w-full max-w-md flex-col gap-4">
               <h4 className="mb-4 text-xl font-bold text-white">
                 Pick a movie for a new mashup
               </h4>

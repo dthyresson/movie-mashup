@@ -1,7 +1,9 @@
 export interface CreateMovieInput {
   __typename?: 'CreateMovieInput'
   id: string
+  overview?: string | null
   photo: string
+  releaseDate?: DateTime | null
   title: string
 }
 
@@ -28,7 +30,9 @@ export interface Movie {
   firstMovieMashups: Array<MovieMashup>
   id: string
   mashups: Array<MovieMashup>
+  overview?: string | null
   photo: string
+  releaseDate?: DateTime | null
   secondMovieMashups: Array<MovieMashup>
   title: string
   updatedAt: DateTime
@@ -80,7 +84,9 @@ export interface Redwood {
 
 export interface UpdateMovieInput {
   __typename?: 'UpdateMovieInput'
+  overview?: string | null
   photo?: string | null
+  releaseDate?: DateTime | null
   title?: string | null
 }
 

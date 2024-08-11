@@ -15,7 +15,9 @@ import type {
 export interface CreateMovieInput {
   __typename?: 'CreateMovieInput'
   id: string
+  overview?: string | null
   photo: string
+  releaseDate?: DateTime | null
   title: string
 }
 
@@ -65,7 +67,9 @@ export interface Redwood {
 
 export interface UpdateMovieInput {
   __typename?: 'UpdateMovieInput'
+  overview?: string | null
   photo?: string | null
+  releaseDate?: DateTime | null
   title?: string | null
 }
 
@@ -80,6 +84,7 @@ export interface UpdateMovieMashupInput {
   treatment?: string | null
 }
 
+type DateTime = any
 type JSON = any
 export type Movie = PMovie
 export type MovieMashup = PMovieMashup

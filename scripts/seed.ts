@@ -7,6 +7,7 @@ export default async () => {
   console.info('🎬 Seeding movies')
   // if count is 0, seed
   const count = await db.movie.count()
+
   if (count === 0) {
     try {
       await db.movie.createMany({

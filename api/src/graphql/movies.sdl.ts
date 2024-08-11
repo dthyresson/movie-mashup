@@ -4,6 +4,8 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     title: String!
+    overview: String
+    releaseDate: DateTime
     photo: String!
     firstMovieMashups: [MovieMashup]!
     secondMovieMashups: [MovieMashup]!
@@ -18,11 +20,15 @@ export const schema = gql`
   input CreateMovieInput {
     id: String!
     title: String!
+    overview: String
+    releaseDate: DateTime
     photo: String!
   }
 
   input UpdateMovieInput {
     title: String
+    overview: String
+    releaseDate: DateTime
     photo: String
   }
 

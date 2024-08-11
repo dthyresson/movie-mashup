@@ -420,4 +420,172 @@ export const MOVIES = [
     releaseDate: '1980-05-23T00:00:00.000Z',
     title: 'The Shining',
   },
+  {
+    id: '13342-fast-times-at-ridgemont-high',
+    title: 'Fast Times at Ridgemont High',
+    overview:
+      'Based on the real-life adventures chronicled by Cameron Crowe, Fast Times follows a group of high school students growing up in Southern California. Stacy Hamilton and Mark Ratner are looking for a love interest, and are helped along by their older classmates, Linda Barrett and Mike Damone, respectively. At the center of the film is Jeff Spicoli, a perpetually stoned surfer who faces-off with the resolute Mr. Hand—a man convinced that everyone is on dope.',
+    photo: '/e15rmfjf0m6EGLe4MnNhwD3Dd1W.jpg',
+    releaseDate: '1982-08-13T00:00:00.000Z',
+  },
+  {
+    id: '88-dirty-dancing',
+    title: 'Dirty Dancing',
+    overview:
+      "Expecting the usual tedium that accompanies a summer in the Catskills with her family, 17-year-old Frances 'Baby' Houseman is surprised to find herself stepping into the shoes of a professional hoofer—and unexpectedly falling in love.",
+    photo: '/dvEggyDTTIBDvrUNjTEa9depT0f.jpg',
+    releaseDate: '1987-08-21T00:00:00.000Z',
+  },
+  {
+    id: '1891-empire-strikes-back',
+    title: 'The Empire Strikes Back',
+    overview:
+      'The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair.',
+    photo: '/y8kozeXuFDRKGCBRJGfZY0KbGi1.jpg',
+    releaseDate: '1980-05-21T00:00:00.000Z',
+  },
+  {
+    id: '279-amadeus',
+    title: 'Amadeus',
+    overview:
+      "Wolfgang Amadeus Mozart is a remarkably talented young Viennese composer who unwittingly finds a fierce rival in the disciplined and determined Antonio Salieri. Resenting Mozart for both his hedonistic lifestyle and his undeniable talent, the highly religious Salieri is gradually consumed by his jealousy and becomes obsessed with Mozart's downfall, leading to a devious scheme that has dire consequences for both men.",
+    photo: '/tsqcwBp1jYZdcceXXoVEby0dZkt.jpg',
+    releaseDate: '1984-09-19T00:00:00.000Z',
+  },
+  {
+    id: '149-akira',
+    title: 'Akira',
+    overview:
+      'A secret military project endangers Neo-Tokyo when it turns a biker gang member into a rampaging psychic psychopath that only two teenagers and a group of psychics can stop.',
+    photo: '/neZ0ykEsPqxamsX6o5QNUFILQrz.jpg',
+    releaseDate: '2020-09-24T00:00:00.000Z',
+  },
+  {
+    id: '679-aliens',
+    title: 'Aliens',
+    overview:
+      "When Ripley's lifepod is found by a salvage crew over 50 years later, she finds that terra-formers are on the very planet they found the alien species. When the company sends a family of colonists out to investigate her story—all contact is lost with the planet and colonists. They enlist Ripley and the colonial marines to return and search for answers.",
+    photo: '/r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg',
+    releaseDate: '1986-07-18T00:00:00.000Z',
+  },
+  {
+    id: '8337-they-live',
+    title: 'They Live',
+    overview:
+      'Nada, a wanderer without meaning in his life, discovers a pair of sunglasses capable of showing the world the way it truly is. As he walks the streets of Los Angeles, Nada notices that both the media and the government are comprised of subliminal messages meant to keep the population subdued, and that most of the social elite are skull-faced aliens bent on world domination. With this shocking discovery, Nada fights to free humanity from the mind-controlling aliens.',
+    photo: '/ngnybFTuopfbfmmEeX9jjBQQmF6.jpg',
+    releaseDate: '1988-11-23T00:00:00.000Z',
+  },
+  {
+    id: '11031-this-is-spinal-tap',
+    title: 'This Is Spinal Tap',
+    overview:
+      '"This Is Spinal Tap" shines a light on the self-contained universe of a metal band struggling to get back on the charts, including everything from its complicated history of ups and downs, gold albums, name changes and undersold concert dates, along with the full host of requisite groupies, promoters, hangers-on and historians, sessions, release events and those special behind-the-scenes moments that keep it all real.',
+    photo: '/z2LA8eBTSuuPC4NBhIZRNIwpimH.jpg',
+    releaseDate: '1984-09-08T00:00:00.000Z',
+  },
+  {
+    id: '9549-the-right-stuff',
+    title: 'The Right Stuff',
+    overview:
+      "A chronicle of the original Mercury astronauts in the formation of America's space program: Alan Shepherd, the first American in space; Gus Grissom, the benighted astronaut for whom nothing works out as planned; John Glenn, the straight-arrow 'boy scout' of the bunch who was the first American to orbit the earth; and the remaining pilots: Deke Slayton, Scott Carpenter, Wally Schirra, and Gordon Cooper.",
+    photo: '/btqTjNRxecYgQ1FGfVlLqSSNjz.jpg',
+    releaseDate: '1983-10-21T00:00:00.000Z',
+  },
+  {
+    id: '2028-say-anything',
+    title: 'Say Anything...',
+    overview:
+      'A noble underachiever and a beautiful valedictorian fall in love the summer before she goes off to college.',
+    photo: '/4J4s2FzBQ5WeeVCKNoaXC7fZDL7.jpg',
+    releaseDate: '1989-04-14T00:00:00.000Z',
+  },
+  {
+    id: '68-brazil',
+    title: 'Brazil',
+    overview:
+      'Low-level bureaucrat Sam Lowry escapes the monotony of his day-to-day life through a recurring daydream of himself as a virtuous hero saving a beautiful damsel. Investigating a case that led to the wrongful arrest and eventual death of an innocent man instead of wanted terrorist Harry Tuttle, he meets the woman from his daydream, and in trying to help her gets caught in a web of mistaken identities, mindless bureaucracy and lies.',
+    photo: '/d0PibPzCK4fVikjoD1PqHovbvkt.jpg',
+    releaseDate: '1985-12-18T00:00:00.000Z',
+  },
+  {
+    id: '1091-the-thing',
+    title: 'The Thing',
+    overview:
+      "Members of an American scientific research outpost in Antarctica find themselves battling a parasitic alien organism capable of perfectly imitating its victims. They soon discover that this task will be harder than they thought, as they don't know which members of the team have already been assimilated and their paranoia threatens to tear them apart.",
+    photo: '/tzGY49kseSE9QAKk47uuDGwnSCu.jpg',
+    releaseDate: '1982-06-25T00:00:00.000Z',
+  },
+  {
+    id: '2292-clerks',
+    title: 'Clerks',
+    overview:
+      'Convenience and video store clerks Dante and Randal are sharp-witted, potty-mouthed and bored out of their minds. So in between needling customers, the counter jockeys play hockey on the roof, visit a funeral home and deal with their love lives.',
+    photo: '/zeFhNF0SXlYIvWXpaOLuXVQ3jB4.jpg',
+    releaseDate: '1994-10-19T00:00:00.000Z',
+  },
+  {
+    id: '629-usual-suspects',
+    title: 'The Usual Suspects',
+    overview:
+      "Held in an L.A. interrogation room, Verbal Kint attempts to convince the feds that a mythic crime lord, Keyser Soze, not only exists, but was also responsible for drawing him and his four partners into a multi-million dollar heist that ended with an explosion in San Pedro harbor – leaving few survivors. Verbal lures his interrogators with an incredible story of the crime lord's almost supernatural prowess.",
+    photo: '/bUPmtQzrRhzqYySeiMpv7GurAfm.jpg',
+    releaseDate: '1995-08-16T00:00:00.000Z',
+  },
+  {
+    id: '2756-abyss',
+    title: 'The Abyss',
+    overview:
+      "A civilian oil rig crew is recruited to conduct a search and rescue effort when a nuclear submarine mysteriously sinks. One diver soon finds himself on a spectacular odyssey 25,000 feet below the ocean's surface where he confronts a mysterious force that has the power to change the world or destroy it.",
+    photo: '/jel2BuDv7Bq4fuv2pUrTfiBm69o.jpg',
+    releaseDate: '1989-08-09T00:00:00.000Z',
+  },
+  {
+    id: '9603-clueless',
+    title: 'Clueless',
+    overview:
+      "Shallow, rich and socially successful Cher is at the top of her Beverly Hills high school's pecking scale. Seeing herself as a matchmaker, Cher first coaxes two teachers into dating each other. Emboldened by her success, she decides to give hopelessly klutzy new student Tai a makeover. When Tai becomes more popular than she is, Cher realizes that her disapproving ex-stepbrother was right about how misguided she was -- and falls for him.",
+    photo: '/71RW4lkES2Dt7vSLSXvekGYNskG.jpg',
+    releaseDate: '1995-07-19T00:00:00.000Z',
+  },
+  {
+    id: '115-the-big-lebowski',
+    title: 'The Big Lebowski',
+    overview:
+      "Jeffrey 'The Dude' Lebowski, a Los Angeles slacker who only wants to bowl and drink White Russians, is mistaken for another Jeffrey Lebowski, a wheelchair-bound millionaire, and finds himself dragged into a strange series of events involving nihilists, adult film producers, ferrets, errant toes, and large sums of money.",
+    photo: '/5DpmtMBXXNDujIuSlKW3WLKuqEd.jpg',
+    releaseDate: '1998-03-06T00:00:00.000Z',
+  },
+  {
+    id: '862-toy-story',
+    title: 'Toy Story',
+    overview:
+      "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.",
+    photo: '/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+    releaseDate: '1995-11-22T00:00:00.000Z',
+  },
+  {
+    id: '500-reservoir-dogs',
+    title: 'Reservoir Dogs',
+    overview:
+      'A botched robbery indicates a police informant, and the pressure mounts in the aftermath at a warehouse. Crime begets violence as the survivors -- veteran Mr. White, newcomer Mr. Orange, psychopathic parolee Mr. Blonde, bickering weasel Mr. Pink and Nice Guy Eddie -- unravel.',
+    photo: '/lsBnfheKZBO3UKU7lVHIeGZLWuF.jpg',
+    releaseDate: '1992-10-23T00:00:00.000Z',
+  },
+  {
+    id: '603-matrix',
+    title: 'The Matrix',
+    overview:
+      'Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.',
+    photo: '/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
+    releaseDate: '1999-03-30T00:00:00.000Z',
+  },
+  {
+    id: '769-goodfellas',
+    title: 'GoodFellas',
+    overview:
+      'The true story of Henry Hill, a half-Irish, half-Sicilian Brooklyn kid who is adopted by neighbourhood gangsters at an early age and climbs the ranks of a Mafia family under the guidance of Jimmy Conway.',
+    photo: '/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg',
+    releaseDate: '1990-09-19T00:00:00.000Z',
+  },
 ]

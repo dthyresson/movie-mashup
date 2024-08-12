@@ -5,20 +5,20 @@ interface Photo {
   imageUrl: string
 }
 
-interface PhotoGridProps {
+interface PosterGridProps {
   photos: Photo[]
   title: string
   onPhotoClick: (photoId: string) => void
 }
 
-const PhotoGrid: React.FC<PhotoGridProps> = ({
+const PosterGrid: React.FC<PosterGridProps> = ({
   photos,
   title,
   onPhotoClick,
 }) => {
   return (
     <>
-      <h3 className="mt-8 text-xl font-bold text-gray-800">All photos</h3>
+      <h3 className="mt-8 text-xl font-bold text-gray-800">All Posters</h3>
       <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {photos.map((photo, index) => (
           <button
@@ -39,4 +39,4 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
   )
 }
 
-export default PhotoGrid
+export default PosterGrid

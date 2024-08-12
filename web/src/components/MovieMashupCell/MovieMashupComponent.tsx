@@ -9,7 +9,7 @@ import { REALISM_OPTIONS } from 'src/components/MoviesCell/RealismSelector'
 import { FullSizePhotoModal } from './FullSizePhotoModal'
 import { MovieButton } from './MovieButton'
 import { OverlayButton, OverlayContent } from './OverlayButton'
-import PhotoGrid from './PhotoGrid'
+import PosterGrid from './PosterGrid'
 
 const CREATE_PHOTO_MUTATION = gql`
   mutation CreatePhotoMutation($input: CreatePhotoInput!) {
@@ -36,7 +36,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
 
   const [createPhoto] = useMutation(CREATE_PHOTO_MUTATION, {
     onCompleted: (data) => {
-      toast.success(`Photo generated!`)
+      toast.success(`Poster generated!`)
       navigate(routes.movieMashup({ id: data.createPhoto.id }), {
         replace: true,
       })
@@ -45,7 +45,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
 
   const [setMovieMashupPhoto] = useMutation(SET_MOVIE_MASHUP_PHOTO_MUTATION, {
     onCompleted: () => {
-      toast.success('Photo set as main image')
+      toast.success('Set as main poster')
       navigate(routes.movieMashup({ id: movieMashup.id }), {
         replace: true,
       })
@@ -68,7 +68,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
       ULTRA: 24,
     }
     const duration = baseTime * (realismFactor[realism] || 1)
-    toast.loading('Generating photo...', { duration })
+    toast.loading('Generating poster ...', { duration })
     createPhoto({
       variables: {
         input: {
@@ -77,7 +77,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
         },
       },
       onCompleted: (data) => {
-        toast.success('Photo generated!')
+        toast.success('Poster generated!')
         navigate(routes.movieMashup({ id: data.createPhoto.id }), {
           replace: true,
         })
@@ -97,7 +97,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
         },
       },
       onCompleted: () => {
-        toast.success('Photo set as main image')
+        toast.success('Set as main poster')
         navigate(routes.movieMashup({ id: movieMashup.id }), {
           replace: true,
         })
@@ -229,7 +229,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
         </nav>
 
         {movieMashup.photos.length > 1 && (
-          <PhotoGrid
+          <PosterGrid
             photos={movieMashup.photos}
             title={movieMashup.title}
             onPhotoClick={handlePhotoClick}

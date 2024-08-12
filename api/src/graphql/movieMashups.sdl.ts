@@ -41,6 +41,7 @@ export const schema = gql`
     firstMovieId: String
     secondMovieId: String
   }
+
   enum Realism {
     LOW
     MEDIUM
@@ -56,7 +57,9 @@ export const schema = gql`
   type Mutation {
     mashMovies(input: MashMoviesInput!): MovieMashup!
       @rateLimited(identifier: "mashMovies")
-    createMovieMashup(input: CreateMovieMashupInput!): MovieMashup! @blocked
+    createMovieMashup(input: CreateMovieMashupInput!): MovieMashup!
+      @blocked
+      @rateLimited(identifier: "setMovieMashupPhoto")
     updateMovieMashup(
       id: String!
       input: UpdateMovieMashupInput!

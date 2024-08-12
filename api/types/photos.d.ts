@@ -7,15 +7,28 @@ import type { GraphQLResolveInfo } from 'graphql'
 import type { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/types'
 
 import type {
-  Photo as RTPhoto,
   MovieMashup as RTMovieMashup,
+  Photo as RTPhoto,
 } from './shared-return-types'
 import type {
+  SetMovieMashupPhotoInput,
   CreatePhotoInput,
   UpdatePhotoInput,
-  Query,
   Mutation,
+  Query,
 } from './shared-schema-types'
+
+/** SDL: setMovieMashupPhoto(input: SetMovieMashupPhotoInput!): MovieMashup! */
+export interface SetMovieMashupPhotoResolver {
+  (
+    args: { input: SetMovieMashupPhotoInput },
+    obj?: {
+      root: Mutation
+      context: RedwoodGraphQLContext
+      info: GraphQLResolveInfo
+    }
+  ): Promise<RTMovieMashup>
+}
 
 /** SDL: photos: [Photo!]! */
 export interface PhotosResolver {

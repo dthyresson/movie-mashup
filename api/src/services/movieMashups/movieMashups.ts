@@ -14,7 +14,7 @@ export const movieMashups: MovieMashupsResolver = async () => {
     include: {
       photos: {
         orderBy: {
-          createdAt: 'desc',
+          updatedAt: 'desc',
         },
         take: 1, // Include only the most recent photo
       },
@@ -31,7 +31,7 @@ export const movieMashup: MovieMashupResolver = async ({ id }) => {
     include: {
       photos: {
         orderBy: {
-          createdAt: 'desc',
+          updatedAt: 'desc',
         },
       },
       firstMovie: true,

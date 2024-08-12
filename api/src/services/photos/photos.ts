@@ -4,6 +4,7 @@ import type {
   CreatePhotoResolver,
   UpdatePhotoResolver,
   DeletePhotoResolver,
+  SetMovieMashupPhotoResolver,
   PhotoTypeResolvers,
 } from 'types/photos'
 
@@ -11,6 +12,19 @@ import { db } from 'src/lib/db'
 import { generateMovieMashupPosterUrl } from 'src/lib/fal'
 import { logger } from 'src/lib/logger'
 import { movieMashup } from 'src/services/movieMashups/movieMashups'
+
+export const setMovieMashupPhoto: SetMovieMashupPhotoResolver = async ({
+  input,
+}) => {
+  await db.photo.update({
+    data: {
+      movieMashupId: input.movieMashupId,
+    },
+    where: { id: input.photoId },
+  })
+
+  return await movieMashup({ id: input.movieMashupId })
+}
 
 export const photos: PhotosResolver = async () => {
   return await db.photo.findMany()

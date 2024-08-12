@@ -72,6 +72,7 @@ export interface Mutation {
   deleteMovieMashup: MovieMashup
   deletePhoto: Photo
   mashMovies: MovieMashup
+  setMovieMashupPhoto: MovieMashup
   updateMovie: Movie
   updateMovieMashup: MovieMashup
   updatePhoto: Photo
@@ -106,6 +107,12 @@ export interface Redwood {
   currentUser?: JSON | null
   prismaVersion?: string | null
   version?: string | null
+}
+
+export interface SetMovieMashupPhotoInput {
+  __typename?: 'SetMovieMashupPhotoInput'
+  movieMashupId: string
+  photoId: string
 }
 
 export interface UpdateMovieInput {

@@ -25,9 +25,16 @@ export const schema = gql`
     movieMashupId: String
   }
 
+  input SetMovieMashupPhotoInput {
+    movieMashupId: String!
+    photoId: String!
+  }
+
   type Mutation {
     createPhoto(input: CreatePhotoInput!): MovieMashup!
       @rateLimited(identifier: "createPhoto")
+    setMovieMashupPhoto(input: SetMovieMashupPhotoInput!): MovieMashup!
+      @rateLimited(identifier: "setMovieMashupPhoto")
     updatePhoto(id: String!, input: UpdatePhotoInput!): Photo! @blocked
     deletePhoto(id: String!): Photo! @blocked
   }

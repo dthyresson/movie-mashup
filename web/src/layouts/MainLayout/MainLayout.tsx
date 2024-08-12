@@ -39,20 +39,18 @@ const Footer = () => (
       </Link>
       {[
         'RedwoodJS',
-        'GitHub',
+        ['GitHub', 'https://github.com/dthyresson/movie-mashup'],
         'Cursor',
-        ['Fal', 'ai'],
+        ['Fal', 'https://fal.ai'],
         'Langbase',
         'Tailwind',
         'Unkey',
       ].map((item) => (
         <a
           key={Array.isArray(item) ? item[0] : item}
-          href={`https://${
-            Array.isArray(item)
-              ? item[0].toLowerCase() + '.' + item[1]
-              : item.toLowerCase() + '.com'
-          }`}
+          href={
+            Array.isArray(item) ? item[1] : `https://${item.toLowerCase()}.com`
+          }
           className="hover:text-orange-500"
           target="_blank"
           rel="noreferrer"

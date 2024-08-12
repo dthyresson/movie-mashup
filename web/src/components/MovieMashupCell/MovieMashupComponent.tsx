@@ -6,48 +6,10 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { REALISM_OPTIONS } from 'src/components/MoviesCell/RealismSelector'
 
-// New reusable components
-const OverlayButton = ({ onClick, children, className }) => (
-  <button
-    onClick={onClick}
-    className={`absolute bottom-2 rounded-full bg-white p-1 shadow-md ${className}`}
-  >
-    {children}
-  </button>
-)
-
-const OverlayContent = ({ show, onClose, className, children }) =>
-  show && (
-    <button
-      className={`absolute inset-0 flex cursor-pointer items-center justify-center overflow-y-scroll  bg-opacity-75 p-4 ${className}`}
-      onClick={onClose}
-    >
-      {children}
-    </button>
-  )
-
-const MovieButton = ({ movie, onClick }) => (
-  <button
-    key={movie.id}
-    onClick={(e) => {
-      e.stopPropagation()
-      onClick(movie.id)
-    }}
-    className="group flex w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-sm transition-transform hover:scale-105 hover:bg-orange-100 hover:shadow-md hover:ring-2 hover:ring-red-600"
-  >
-    <div className="flex items-center justify-center rounded-sm border border-orange-200 p-1">
-      <img
-        src={`https://www.themoviedb.org/t/p/w185_and_h278_bestv2${movie.photo}`}
-        alt={movie.title}
-        loading="lazy"
-        className="max-h-16 max-w-screen-sm object-contain lg:max-h-36 lg:max-w-full"
-      />
-    </div>
-    <h3 className="text-normal mt-2 truncate text-center font-movie-title text-sm text-gray-800 group-hover:text-red-600 md:text-sm">
-      {movie.title}
-    </h3>
-  </button>
-)
+import { FullSizePhotoModal } from './FullSizePhotoModal'
+import { MovieButton } from './MovieButton'
+import { OverlayButton, OverlayContent } from './OverlayButton'
+import PhotoGrid from './PhotoGrid'
 
 const CREATE_PHOTO_MUTATION = gql`
   mutation CreatePhotoMutation($input: CreatePhotoInput!) {
@@ -64,25 +26,6 @@ const SET_MOVIE_MASHUP_PHOTO_MUTATION = gql`
     }
   }
 `
-
-// Add this new component
-const FullSizePhotoModal = ({ photo, onClose }) => (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
-    <div className="relative max-h-[90vh] max-w-[90vw]">
-      <img
-        src={photo.imageUrl}
-        alt="Full size mashup"
-        className="max-h-[90vh] max-w-[90vw] object-contain"
-      />
-      <button
-        onClick={onClose}
-        className="absolute right-2 top-2 rounded-full bg-white p-2 text-black hover:bg-gray-200"
-      >
-        💥
-      </button>
-    </div>
-  </div>
-)
 
 const MovieMashupComponent = ({ movieMashup }) => {
   const [showDescription, setShowDescription] = useState(false)
@@ -286,25 +229,11 @@ const MovieMashupComponent = ({ movieMashup }) => {
         </nav>
 
         {movieMashup.photos.length > 1 && (
-          <>
-            <h3 className="mt-8 text-xl font-bold text-gray-800">All photos</h3>
-            <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {movieMashup.photos.map((photo, index) => (
-                <button
-                  key={photo.id}
-                  onClick={() => handlePhotoClick(photo.id)}
-                  className="w-full cursor-pointer rounded-lg shadow-md transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  <img
-                    src={photo.imageUrl}
-                    alt={`${movieMashup.title} ${index + 1}`}
-                    className="w-full rounded-lg object-cover"
-                    loading="lazy"
-                  />
-                </button>
-              ))}
-            </div>
-          </>
+          <PhotoGrid
+            photos={movieMashup.photos}
+            title={movieMashup.title}
+            onPhotoClick={handlePhotoClick}
+          />
         )}
 
         {fullSizePhoto && (

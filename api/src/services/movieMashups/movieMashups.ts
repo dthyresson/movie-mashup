@@ -18,6 +18,8 @@ export const movieMashups: MovieMashupsResolver = async () => {
         },
         take: 1, // Include only the most recent photo
       },
+      firstMovie: true,
+      secondMovie: true,
     },
     orderBy: {
       createdAt: 'desc',
@@ -95,5 +97,8 @@ export const MovieMashup: MovieMashupTypeResolvers = {
     return await db.movieMashup
       .findUnique({ where: { id: root?.id } })
       .secondMovie()
+  },
+  photos: async (_obj, { root }) => {
+    return await db.movieMashup.findUnique({ where: { id: root?.id } }).photos()
   },
 }

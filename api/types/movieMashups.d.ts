@@ -1,5 +1,6 @@
 import type {
   Movie as PMovie,
+  Photo as PPhoto,
   MovieMashup as PMovieMashup,
 } from '@prisma/client'
 import type { GraphQLResolveInfo } from 'graphql'
@@ -9,6 +10,7 @@ import type { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/types
 import type {
   MovieMashup as RTMovieMashup,
   Movie as RTMovie,
+  Photo as RTPhoto,
 } from './shared-return-types'
 import type {
   CreateMovieMashupInput,
@@ -97,9 +99,20 @@ export interface MovieMashupTypeResolvers {
       info?: GraphQLResolveInfo
     }
   ) => Promise<RTMovie>
+
+  /** SDL: photos: [Photo!]! */
+  photos: (
+    args: undefined,
+    obj: {
+      root: MovieMashupAsParent
+      context?: RedwoodGraphQLContext
+      info?: GraphQLResolveInfo
+    }
+  ) => Promise<RTPhoto[]>
 }
 
 type MovieMashupAsParent = PMovieMashup & {
   firstMovie: () => Promise<PMovie>
   secondMovie: () => Promise<PMovie>
+  photos: () => Promise<PPhoto[]>
 }

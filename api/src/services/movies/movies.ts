@@ -10,12 +10,16 @@ import type {
 import { db } from 'src/lib/db'
 
 export const movies: MoviesResolver = async () => {
-  return await db.movie.findMany({ orderBy: { title: 'asc' } })
+  return await db.movie.findMany({
+    orderBy: { title: 'asc' },
+    include: { firstMovieMashups: true, secondMovieMashups: true },
+  })
 }
 
 export const movie: MovieResolver = async ({ id }) => {
   return await db.movie.findUnique({
     where: { id },
+    include: { firstMovieMashups: true, secondMovieMashups: true },
   })
 }
 

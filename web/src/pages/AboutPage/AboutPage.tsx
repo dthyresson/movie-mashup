@@ -94,32 +94,36 @@ const AboutPage = () => {
 
         <h3 className="mb-2 text-xl font-semibold">Movie Mashup Generation</h3>
         <p className="mb-4">
-          When you select two movies, we use LangBase to generate a unique movie
-          concept. Here&apos;s a simplified version of how it works:
+          When you select two movies, we use Langbase to generate a unique movie
+          concept.
+        </p>
+        <p className="mb-4">
+          View the{' '}
+          <a
+            href="https://langbase.com/dthyresson/movie-mashup/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 hover:underline"
+          >
+            public pipe
+          </a>{' '}
+          for the prompt:
         </p>
         <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
           <code className="language-typescript">
-            {`const movieMashupGenerator = async ({
-  firstMovieTitle,
-  secondMovieTitle,
-}) => {
-  const response = await fetch('https://api.langbase.com/beta/generate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: \`Bearer \${process.env.LANGBASE_MOVIE_MASHUP_PIPE_API_KEY}\`,
-    },
-    body: JSON.stringify({
-      variables: [
-        { name: 'firstMovieTitle', value: firstMovieTitle },
-        { name: 'secondMovieTitle', value: secondMovieTitle },
-      ],
-    }),
-  })
+            {`You are a movie fan and aspiring screenwriter.
 
-  const { completion } = await response.json()
-  return JSON.parse(completion)
-}`}
+Write a short new movie treatment in the style of a movie trailer advertisement voice over
+by mashing up the plots, characters, their names, and themes of the First Movie and Second Movie.
+
+Give the new movie a title and tagline that could be used on a movie poster.
+
+Describe an image that depicts the movie you wrote. Be sure to include the characters.
+The description should be descriptive, but three short sentences.
+
+Just give me the instructions, don't make an image.
+
+The treatment should be no longer than 3 sentences.`}
           </code>
         </pre>
 

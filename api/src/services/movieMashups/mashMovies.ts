@@ -21,7 +21,7 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
 
     logger.info({ title, tagline, treatment, description })
 
-    const posterUrl = await generateMovieMashupPosterUrl({
+    const { falModel, imageUrl } = await generateMovieMashupPosterUrl({
       title,
       tagline,
       treatment,
@@ -36,7 +36,8 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
         description,
         photos: {
           create: {
-            imageUrl: posterUrl,
+            falModel,
+            imageUrl,
           },
         },
         firstMovie: {

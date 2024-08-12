@@ -45,6 +45,7 @@ model Photo {
   id            String       @id @default(cuid())
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
+  falModel      String
   imageUrl      String
   movieMashup   MovieMashup? @relation(fields: [movieMashupId], references: [id])
   movieMashupId String?

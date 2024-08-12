@@ -34,13 +34,15 @@ export const movieMashup: MovieMashupResolver = async ({ id }) => {
 export const createMovieMashup: CreateMovieMashupResolver = async ({
   input,
 }) => {
-  const { firstMovieId, secondMovieId, posterUrl, ...restInput } = input
+  const { firstMovieId, secondMovieId, falModel, imageUrl, ...restInput } =
+    input
   return await db.movieMashup.create({
     data: {
       ...restInput,
       photos: {
         create: {
-          imageUrl: posterUrl,
+          falModel,
+          imageUrl,
         },
       },
       firstMovie: {

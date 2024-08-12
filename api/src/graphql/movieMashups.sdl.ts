@@ -25,7 +25,8 @@ export const schema = gql`
     tagline: String!
     treatment: String!
     description: String!
-    posterUrl: String!
+    falModel: String!
+    imageUrl: String!
     firstMovieId: String!
     secondMovieId: String!
   }
@@ -35,7 +36,8 @@ export const schema = gql`
     tagline: String
     treatment: String
     description: String
-    posterUrl: String
+    falModel: String
+    imageUrl: String
     firstMovieId: String
     secondMovieId: String
   }

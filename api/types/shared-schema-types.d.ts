@@ -10,8 +10,9 @@ export interface CreateMovieInput {
 export interface CreateMovieMashupInput {
   __typename?: 'CreateMovieMashupInput'
   description: string
+  falModel: string
   firstMovieId: string
-  posterUrl: string
+  imageUrl: string
   secondMovieId: string
   tagline: string
   title: string
@@ -20,6 +21,7 @@ export interface CreateMovieMashupInput {
 
 export interface CreatePhotoInput {
   __typename?: 'CreatePhotoInput'
+  falModel: string
   imageUrl: string
   movieMashupId?: string | null
 }
@@ -78,6 +80,7 @@ export interface Mutation {
 export interface Photo {
   __typename?: 'Photo'
   createdAt: DateTime
+  falModel: string
   id: string
   imageUrl: string
   movieMashup?: MovieMashup | null
@@ -114,8 +117,9 @@ export interface UpdateMovieInput {
 export interface UpdateMovieMashupInput {
   __typename?: 'UpdateMovieMashupInput'
   description?: string | null
+  falModel?: string | null
   firstMovieId?: string | null
-  posterUrl?: string | null
+  imageUrl?: string | null
   secondMovieId?: string | null
   tagline?: string | null
   title?: string | null
@@ -124,6 +128,7 @@ export interface UpdateMovieMashupInput {
 
 export interface UpdatePhotoInput {
   __typename?: 'UpdatePhotoInput'
+  falModel?: string | null
   imageUrl?: string | null
   movieMashupId?: string | null
 }

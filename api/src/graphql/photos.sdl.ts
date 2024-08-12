@@ -3,6 +3,7 @@ export const schema = gql`
     id: String!
     createdAt: DateTime!
     updatedAt: DateTime!
+    falModel: String!
     imageUrl: String!
     movieMashup: MovieMashup
     movieMashupId: String
@@ -14,11 +15,13 @@ export const schema = gql`
   }
 
   input CreatePhotoInput {
+    falModel: String!
     imageUrl: String!
     movieMashupId: String
   }
 
   input UpdatePhotoInput {
+    falModel: String
     imageUrl: String
     movieMashupId: String
   }

@@ -91,6 +91,7 @@ const AboutPage = () => {
         </div>
 
         <h2 className="mb-3 mt-3 text-2xl font-semibold">How It Works</h2>
+
         <h3 className="mb-2 text-xl font-semibold">Movie Mashup Generation</h3>
         <p className="mb-4">
           When you select two movies, we use LangBase to generate a unique movie
@@ -184,8 +185,8 @@ const AboutPage = () => {
 
         <h3 className="mb-2 text-xl font-semibold">Rate Limiting</h3>
         <p className="mb-4">
-          We use Unkey for rate limiting our GraphQL API. Here's how it's
-          implemented:
+          We use Unkey for rate limiting our GraphQL API. Here&apos;s how it
+          works:
         </p>
         <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
           <code className="language-typescript">
@@ -241,6 +242,163 @@ export default rateLimited`}
             Create a new movie mashup
           </Link>{' '}
           and experience the magic yourself!
+        </p>
+
+        <h3 className="mb-2 mt-6 text-xl font-semibold">Database Schema</h3>
+        <p className="mb-4">
+          We use Prisma as our ORM. Here&apos;s our current database schema:
+        </p>
+
+        <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
+          <code className="language-prisma">
+            {`model Movie {
+  id                 String        @id
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  title              String        @unique
+  overview           String?
+  releaseDate        DateTime?
+  photo              String
+  firstMovieMashups  MovieMashup[] @relation("firstMovie")
+  secondMovieMashups MovieMashup[] @relation("secondMovie")
+}
+
+model MovieMashup {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String
+  tagline       String
+  treatment     String
+  description   String
+  photos        Photo[]
+  firstMovie    Movie    @relation("firstMovie", fields: [firstMovieId], references: [id])
+  firstMovieId  String
+  secondMovie   Movie    @relation("secondMovie", fields: [secondMovieId], references: [id])
+  secondMovieId String
+}
+
+model Photo {
+  id            String       @id @default(cuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  falModel      String
+  imageUrl      String
+  movieMashup   MovieMashup? @relation(fields: [movieMashupId], references: [id])
+  movieMashupId String?
+}`}
+          </code>
+        </pre>
+        <p>
+          The mashup current poster is the most recently updated photo. When
+          setting the current poster, we update the photo associated with the
+          movie mashup to set the current time as the updatedAt time.
+        </p>
+
+        <h3 className="mb-2 mt-6 text-xl font-semibold">
+          Key GraphQL Mutations
+        </h3>
+        <p className="mb-4">
+          Our application uses several key GraphQL mutations to handle the
+          creation of movie mashups and management of posters:
+        </p>
+
+        <h4 className="mb-2 text-lg font-semibold">Creating a Movie Mashup</h4>
+        <p className="mb-4">
+          The <code>mashMovies</code> mutation is responsible for creating a new
+          movie mashup:
+        </p>
+        <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
+          <code className="language-graphql">
+            {`mutation MashMovies($input: MashMoviesInput!) {
+  mashMovies(input: $input) {
+    id
+    title
+    tagline
+    treatment
+    description
+    photos {
+      id
+      imageUrl
+    }
+  }
+}`}
+          </code>
+        </pre>
+        <p className="mb-4">This mutation does the following:</p>
+        <ol className="mb-4 list-decimal pl-6">
+          <li>Retrieves the selected movies</li>
+          <li>Generates a unique movie concept using LangBase</li>
+          <li>Creates a movie poster using FAL.ai</li>
+          <li>Saves the new mashup and its initial poster to the database</li>
+        </ol>
+
+        <h4 className="mb-2 text-lg font-semibold">Managing Movie Posters</h4>
+        <p className="mb-4">
+          After the initial creation, users can generate additional posters or
+          set an existing poster as the main one for a mashup. This is handled
+          by two mutations:
+        </p>
+
+        <h5 className="text-md mb-2 font-semibold">Creating a new poster</h5>
+        <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
+          <code className="language-graphql">
+            {`mutation CreatePhoto($input: CreatePhotoInput!) {
+  createPhoto(input: $input) {
+    id
+    photos {
+      id
+      imageUrl
+    }
+  }
+}`}
+          </code>
+        </pre>
+
+        <h5 className="text-md mb-2 font-semibold">
+          Setting an existing poster as the main one
+        </h5>
+        <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
+          <code className="language-graphql">
+            {`mutation SetMovieMashupPhoto($input: SetMovieMashupPhotoInput!) {
+  setMovieMashupPhoto(input: $input) {
+    id
+    photos {
+      id
+      imageUrl
+    }
+  }
+}`}
+          </code>
+        </pre>
+
+        <p className="mb-4">
+          These mutations allow users to interact with the movie mashup posters,
+          generating new ones with different realism levels and selecting which
+          poster should be the main one for a mashup.
+        </p>
+
+        <h3 className="mb-2 mt-6 text-xl font-semibold">Rate Limiting</h3>
+        <p className="mb-4">
+          To ensure fair usage and prevent abuse, these mutations are protected
+          by rate limiting using the <code>@rateLimited</code> directive:
+        </p>
+        <pre className="mb-4 overflow-x-auto rounded bg-gray-100 p-4">
+          <code className="language-graphql">
+            {`type Mutation {
+  mashMovies(input: MashMoviesInput!): MovieMashup!
+    @rateLimited(identifier: "mashMovies")
+  createPhoto(input: CreatePhotoInput!): MovieMashup!
+    @rateLimited(identifier: "createPhoto")
+  setMovieMashupPhoto(input: SetMovieMashupPhotoInput!): MovieMashup!
+    @rateLimited(identifier: "setMovieMashupPhoto")
+}`}
+          </code>
+        </pre>
+        <p className="mb-4">
+          This setup helps to maintain the stability and fairness of our API,
+          ensuring that all users have a chance to create and customize their
+          movie mashups.
         </p>
       </div>
     </>

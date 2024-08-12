@@ -160,7 +160,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
           />
           <OverlayButton
             onClick={() => setShowDescription(true)}
-            className="right-2"
+            className="left-2"
           >
             <span className="h-6 w-6 text-gray-600">🥤</span>
           </OverlayButton>
@@ -172,7 +172,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
           </OverlayButton>
           <OverlayButton
             onClick={() => setShowRealism(true)}
-            className="left-2"
+            className="right-2"
           >
             <span className="h-6 w-6 text-gray-600">🖼️</span>
           </OverlayButton>
@@ -188,7 +188,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
           <OverlayContent
             show={showMovies}
             onClose={() => setShowMovies(false)}
-            className="min-h-[50vh] bg-amber-500"
+            className="min-h-[50vh] bg-orange-500"
           >
             <div className="mx-auto flex w-full max-w-md flex-col gap-4">
               <h4 className="mb-4 text-xl font-bold text-white">

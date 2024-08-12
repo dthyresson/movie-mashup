@@ -26,14 +26,14 @@ const Header = () => (
 )
 
 const Footer = () => (
-  <footer className="mt-4 flex items-center justify-between border-t border-orange-200 px-4 py-4 text-sm text-gray-500">
-    <p>
+  <footer className="mt-4 flex flex-col items-center justify-between border-t border-orange-200 px-4 py-4 text-sm text-gray-500 sm:flex-row">
+    <p className="mb-2 sm:mb-0">
       Made with ❤️ by{' '}
       <a href="https://www.thyresson.io" className="hover:text-orange-500">
         DT
       </a>
     </p>
-    <div className="space-x-4">
+    <div className="flex flex-wrap justify-center space-x-2 sm:space-x-4">
       <Link to={routes.about()} className="hover:text-orange-500">
         About
       </Link>

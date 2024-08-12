@@ -15,6 +15,7 @@ import { generateMovieMashupPosterUrl } from 'src/lib/fal'
 import { movieMashupGenerator } from 'src/lib/langbase'
 import { logger } from 'src/lib/logger'
 import { movie } from 'src/services/movies/movies'
+
 export const mashMovies: MashMoviesResolver = async ({ input }) => {
   const firstMovie = await movie({ id: input.firstMovieId })
   const secondMovie = await movie({ id: input.secondMovieId })
@@ -59,7 +60,11 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
 }
 
 export const movieMashups: MovieMashupsResolver = () => {
-  return db.movieMashup.findMany()
+  return db.movieMashup.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  })
 }
 
 export const movieMashup: MovieMashupResolver = ({ id }) => {

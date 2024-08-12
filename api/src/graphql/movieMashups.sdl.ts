@@ -41,9 +41,16 @@ export const schema = gql`
     firstMovieId: String
     secondMovieId: String
   }
+  enum Realism {
+    LOW
+    MEDIUM
+    HIGH
+    ULTRA
+  }
   input MashMoviesInput {
     firstMovieId: String!
     secondMovieId: String!
+    realism: String!
   }
 
   type Mutation {

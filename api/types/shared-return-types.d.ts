@@ -44,6 +44,7 @@ export interface CreatePhotoInput {
 export interface MashMoviesInput {
   __typename?: 'MashMoviesInput'
   firstMovieId: string
+  realism: string
   secondMovieId: string
 }
 
@@ -71,6 +72,8 @@ export interface Query {
   photos: PPhoto[]
   redwood?: Redwood | null
 }
+
+export type Realism = 'HIGH' | 'LOW' | 'MEDIUM' | 'ULTRA'
 
 export interface Redwood {
   __typename?: 'Redwood'

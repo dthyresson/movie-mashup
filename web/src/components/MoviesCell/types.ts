@@ -11,6 +11,8 @@ export type MovieSelectorProps = {
   onSelectionComplete: (selectedMovies: string[]) => void
   initialSelection?: string[]
   maxSelection?: number
+  realism: string
+  setRealism: (realism: string) => void
 }
 
 export type MoviesCellProps = CellSuccessProps & {

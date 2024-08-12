@@ -19,13 +19,19 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
         secondMovieTitle: secondMovie.title,
       })
 
-    logger.info({ title, tagline, treatment, description })
+    logger.info({
+      title,
+      tagline,
+      treatment,
+      description,
+    })
 
     const { falModel, imageUrl } = await generateMovieMashupPosterUrl({
       title,
       tagline,
       treatment,
       description,
+      realism: input.realism,
     })
 
     const mashup = await db.movieMashup.create({

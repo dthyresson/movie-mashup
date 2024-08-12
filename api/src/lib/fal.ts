@@ -3,10 +3,10 @@ import * as fal from '@fal-ai/serverless-client'
 import { logger } from 'src/lib/logger'
 
 const PHOTO_REALISM_SETTINGS = {
-  low: 'fast-lightning-sdxl',
-  medium: 'flux/schnell',
-  high: 'aura-flow',
-  ultra: 'flux-realism',
+  LOW: 'fast-lightning-sdxl',
+  MEDIUM: 'flux/schnell',
+  HIGH: 'aura-flow',
+  ULTRA: 'flux-realism',
 }
 
 export const generateMovieMashupPosterUrl = async ({
@@ -14,7 +14,7 @@ export const generateMovieMashupPosterUrl = async ({
   tagline,
   treatment,
   description,
-  realism = 'ultra',
+  realism = 'LOW',
 }) => {
   logger.info({ title, tagline, treatment, description })
 
@@ -29,6 +29,13 @@ export const generateMovieMashupPosterUrl = async ({
     `
 
   const falModel = PHOTO_REALISM_SETTINGS[realism]
+
+  logger.info({ falModel })
+
+  if (!falModel) {
+    throw new Error('Invalid realism level')
+  }
+
   const options = {
     image_size: 'landscape_16_9',
     num_inference_steps: 4,

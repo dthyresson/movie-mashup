@@ -4,6 +4,8 @@ import { toast } from '@redwoodjs/web/toast'
 
 import type { MovieSelectorProps } from 'src/components/MoviesCell/types'
 
+import RealismSelector from './RealismSelector'
+
 const MovieCard = ({ movie, isSelected, onSelect }) => (
   <div
     onClick={() => onSelect(movie.id)}
@@ -37,6 +39,8 @@ const MovieSelector = ({
   onSelectionComplete,
   initialSelection = [],
   maxSelection = 2,
+  realism,
+  setRealism,
 }: MovieSelectorProps) => {
   const [selectedMovies, setSelectedMovies] =
     useState<string[]>(initialSelection)
@@ -72,6 +76,7 @@ const MovieSelector = ({
           🥤 Pick {maxSelection} movies and let&apos;s create movie magic!
         </p>
       )}
+      <RealismSelector realism={realism} setRealism={setRealism} />
       <div className="grid grid-cols-2 gap-4 p-8 text-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-0">
         {movies.map((movie) => (
           <MovieCard

@@ -51,6 +51,7 @@ export const Success = ({
 }: MoviesCellProps) => {
   const [isMashing, setIsMashing] = useState(false)
   const [selectedMovies, setSelectedMovies] = useState<string[]>([])
+  const [realism, setRealism] = useState('LOW')
   const [mashMovies] = useMutation(GENERATE_MASHUP_MUTATION, {
     onCompleted: (data) => {
       console.log('data', data)
@@ -74,6 +75,7 @@ export const Success = ({
           input: {
             firstMovieId: newSelection[0],
             secondMovieId: newSelection[1],
+            realism,
           },
         },
       })
@@ -89,6 +91,8 @@ export const Success = ({
       movies={movies}
       onSelectionComplete={handleSelectionComplete}
       initialSelection={[firstMovieId, secondMovieId].filter(Boolean)}
+      realism={realism}
+      setRealism={setRealism}
     />
   )
 }

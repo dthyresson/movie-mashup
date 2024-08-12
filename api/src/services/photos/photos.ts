@@ -8,6 +8,9 @@ import type {
 } from 'types/photos'
 
 import { db } from 'src/lib/db'
+import { generateMovieMashupPosterUrl } from 'src/lib/fal'
+import { logger } from 'src/lib/logger'
+import { movieMashup } from 'src/services/movieMashups/movieMashups'
 
 export const photos: PhotosResolver = async () => {
   return await db.photo.findMany()
@@ -20,9 +23,22 @@ export const photo: PhotoResolver = async ({ id }) => {
 }
 
 export const createPhoto: CreatePhotoResolver = async ({ input }) => {
-  return await db.photo.create({
-    data: input,
+  const mashup = await movieMashup({ id: input.movieMashupId })
+  const { falModel, imageUrl } = await generateMovieMashupPosterUrl({
+    ...mashup,
+    realism: input.realism,
   })
+  await db.photo.create({
+    data: {
+      movieMashupId: input.movieMashupId,
+      imageUrl,
+      falModel,
+    },
+  })
+
+  const updatedMashup = await movieMashup({ id: input.movieMashupId })
+  logger.debug(updatedMashup, 'updatedMashup')
+  return updatedMashup
 }
 
 export const updatePhoto: UpdatePhotoResolver = async ({ id, input }) => {

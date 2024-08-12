@@ -21,9 +21,8 @@ export interface CreateMovieMashupInput {
 
 export interface CreatePhotoInput {
   __typename?: 'CreatePhotoInput'
-  falModel: string
-  imageUrl: string
   movieMashupId?: string | null
+  realism: Realism
 }
 
 export interface MashMoviesInput {
@@ -68,7 +67,7 @@ export interface Mutation {
   __typename?: 'Mutation'
   createMovie: Movie
   createMovieMashup: MovieMashup
-  createPhoto: Photo
+  createPhoto: MovieMashup
   deleteMovie: Movie
   deleteMovieMashup: MovieMashup
   deletePhoto: Photo

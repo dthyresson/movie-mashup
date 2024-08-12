@@ -41,7 +41,7 @@ export interface PhotoResolver {
   ): Promise<RTPhoto | null>
 }
 
-/** SDL: createPhoto(input: CreatePhotoInput!): Photo! */
+/** SDL: createPhoto(input: CreatePhotoInput!): MovieMashup! */
 export interface CreatePhotoResolver {
   (
     args: { input: CreatePhotoInput },
@@ -50,7 +50,7 @@ export interface CreatePhotoResolver {
       context: RedwoodGraphQLContext
       info: GraphQLResolveInfo
     }
-  ): Promise<RTPhoto>
+  ): Promise<RTMovieMashup>
 }
 
 /** SDL: updatePhoto(id: String!, input: UpdatePhotoInput!): Photo! */

@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
 import { Link, navigate, routes } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
+
+import { REALISM_OPTIONS } from 'src/components/MoviesCell/RealismSelector'
 
 // New reusable components
 const OverlayButton = ({ onClick, children, className }) => (
@@ -45,11 +49,49 @@ const MovieButton = ({ movie, onClick }) => (
   </button>
 )
 
+const CREATE_PHOTO_MUTATION = gql`
+  mutation CreatePhotoMutation($input: CreatePhotoInput!) {
+    createPhoto(input: $input) {
+      id
+    }
+  }
+`
+
 const MovieMashupComponent = ({ movieMashup }) => {
   const [showDescription, setShowDescription] = useState(false)
   const [showMovies, setShowMovies] = useState(false)
+  const [showRealism, setShowRealism] = useState(false)
+  // const [realism, setRealism] = useState('MEDIUM')
+
+  const [createPhoto] = useMutation(CREATE_PHOTO_MUTATION, {
+    onCompleted: (_data) => {
+      toast.success(`Photo generated!`)
+      navigate(routes.movieMashups())
+    },
+  })
+
   const handleMovieClick = (movieId: string) => {
     navigate(routes.newMovieMashup({ firstMovieId: movieId }))
+  }
+
+  const handleCreatePhoto = (realism) => {
+    const baseTime = 2_000
+    const realismFactor = {
+      LOW: 1,
+      MEDIUM: 4,
+      HIGH: 8,
+      ULTRA: 12,
+    }
+    const duration = baseTime * (realismFactor[realism] || 1)
+    toast.loading('Generating photo...', { duration })
+    createPhoto({
+      variables: {
+        input: {
+          movieMashupId: movieMashup.id,
+          realism: realism,
+        },
+      },
+    })
   }
 
   return (
@@ -76,6 +118,12 @@ const MovieMashupComponent = ({ movieMashup }) => {
             className="right-12"
           >
             <span className="h-6 w-6 text-gray-600">🎬</span>
+          </OverlayButton>
+          <OverlayButton
+            onClick={() => setShowRealism(true)}
+            className="left-2"
+          >
+            <span className="h-6 w-6 text-gray-600">🖼️</span>
           </OverlayButton>
           <OverlayContent
             show={showDescription}
@@ -105,6 +153,28 @@ const MovieMashupComponent = ({ movieMashup }) => {
                     />
                   )
                 )}
+              </div>
+            </div>
+          </OverlayContent>
+          <OverlayContent
+            show={showRealism}
+            onClose={() => setShowRealism(false)}
+            className="min-h-[50vh] bg-blue-500"
+          >
+            <div className="mx-auto flex w-full max-w-md flex-col gap-4">
+              <h4 className="mb-4 text-xl font-bold text-white">
+                Generate a new photo
+              </h4>
+              <div className="grid grid-cols-2 gap-4">
+                {REALISM_OPTIONS.map((level) => (
+                  <button
+                    key={level}
+                    onClick={() => handleCreatePhoto(level)}
+                    className="rounded bg-white px-4 py-2 font-bold text-blue-500 hover:bg-blue-100"
+                  >
+                    {level} Realism
+                  </button>
+                ))}
               </div>
             </div>
           </OverlayContent>

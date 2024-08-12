@@ -1,9 +1,11 @@
+export const REALISM_OPTIONS = ['LOW', 'MEDIUM', 'HIGH', 'ULTRA']
+
 const RealismSelector = ({ realism, setRealism }) => (
   <div className="mb-4">
     <div className="flex flex-row items-center justify-center">
       <p className="mr-4 text-lg font-medium text-gray-700">Photo Realism:</p>
       <div className="flex flex-row items-center">
-        {['LOW', 'MEDIUM', 'HIGH', 'ULTRA'].map((level) => (
+        {REALISM_OPTIONS.map((level) => (
           <label
             key={level}
             className="mr-4 inline-flex items-center whitespace-nowrap"

@@ -15,8 +15,7 @@ export const schema = gql`
   }
 
   input CreatePhotoInput {
-    falModel: String!
-    imageUrl: String!
+    realism: Realism!
     movieMashupId: String
   }
 
@@ -27,7 +26,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createPhoto(input: CreatePhotoInput!): Photo! @blocked
+    createPhoto(input: CreatePhotoInput!): MovieMashup!
+      @rateLimited(identifier: "createPhoto")
     updatePhoto(id: String!, input: UpdatePhotoInput!): Photo! @blocked
     deletePhoto(id: String!): Photo! @blocked
   }

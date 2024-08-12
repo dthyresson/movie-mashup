@@ -12,7 +12,12 @@ import { db } from 'src/lib/db'
 export const movieMashups: MovieMashupsResolver = async () => {
   return await db.movieMashup.findMany({
     include: {
-      photos: true,
+      photos: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        take: 1, // Include only the most recent photo
+      },
     },
     orderBy: {
       createdAt: 'desc',
@@ -24,7 +29,11 @@ export const movieMashup: MovieMashupResolver = async ({ id }) => {
   return await db.movieMashup.findUnique({
     where: { id },
     include: {
-      photos: true,
+      photos: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
       firstMovie: true,
       secondMovie: true,
     },

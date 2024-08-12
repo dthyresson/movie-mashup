@@ -65,11 +65,31 @@ const SET_MOVIE_MASHUP_PHOTO_MUTATION = gql`
   }
 `
 
+// Add this new component
+const FullSizePhotoModal = ({ photo, onClose }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+    <div className="relative max-h-[90vh] max-w-[90vw]">
+      <img
+        src={photo.imageUrl}
+        alt="Full size mashup"
+        className="max-h-[90vh] max-w-[90vw] object-contain"
+      />
+      <button
+        onClick={onClose}
+        className="absolute right-2 top-2 rounded-full bg-white p-2 text-black hover:bg-gray-200"
+      >
+        💥
+      </button>
+    </div>
+  </div>
+)
+
 const MovieMashupComponent = ({ movieMashup }) => {
   const [showDescription, setShowDescription] = useState(false)
   const [showMovies, setShowMovies] = useState(false)
   const [showRealism, setShowRealism] = useState(false)
   // const [realism, setRealism] = useState('MEDIUM')
+  const [fullSizePhoto, setFullSizePhoto] = useState(null)
 
   const [createPhoto] = useMutation(CREATE_PHOTO_MUTATION, {
     onCompleted: (data) => {
@@ -145,6 +165,10 @@ const MovieMashupComponent = ({ movieMashup }) => {
     })
   }
 
+  const openFullSizePhoto = (photo) => {
+    setFullSizePhoto(photo)
+  }
+
   return (
     <div className="mx-auto my-0 max-w-3xl bg-white">
       <div className="flex flex-col items-center justify-center gap-4 p-6">
@@ -152,12 +176,17 @@ const MovieMashupComponent = ({ movieMashup }) => {
           {movieMashup.title}
         </h2>
         <div className="relative mb-2 aspect-video w-full max-w-2xl bg-gradient-to-b from-slate-50 via-slate-200 to-slate-100">
-          <img
-            className="absolute inset-0 h-full w-full border-gray-200 object-contain p-4"
-            src={movieMashup.photos[0]?.imageUrl}
-            alt={movieMashup.title}
-            loading="lazy"
-          />
+          <button
+            className="absolute inset-0 h-full w-full cursor-pointer p-4"
+            onClick={() => openFullSizePhoto(movieMashup.photos[0])}
+          >
+            <img
+              className="h-full w-full border-gray-200 object-contain"
+              src={movieMashup.photos[0]?.imageUrl}
+              alt={movieMashup.title}
+              loading="lazy"
+            />
+          </button>
           <OverlayButton
             onClick={() => setShowDescription(true)}
             className="left-2"
@@ -276,6 +305,13 @@ const MovieMashupComponent = ({ movieMashup }) => {
               ))}
             </div>
           </>
+        )}
+
+        {fullSizePhoto && (
+          <FullSizePhotoModal
+            photo={fullSizePhoto}
+            onClose={() => setFullSizePhoto(null)}
+          />
         )}
       </div>
     </div>

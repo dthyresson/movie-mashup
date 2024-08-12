@@ -9,7 +9,6 @@ import { toast } from '@redwoodjs/web/toast'
 
 import FailureComponent from 'src/components/FailureComponent'
 import LoadingComponent from 'src/components/LoadingComponent'
-import MashingAnimation from 'src/components/MoviesCell/MashingAnimation'
 import MovieSelector from 'src/components/MoviesCell/MovieSelector'
 import type { MoviesCellProps } from 'src/components/MoviesCell/types'
 export const beforeQuery = (props) => {
@@ -50,11 +49,16 @@ export const Success = ({
   secondMovieId,
 }: MoviesCellProps) => {
   const [isMashing, setIsMashing] = useState(false)
-  const [selectedMovies, setSelectedMovies] = useState<string[]>([])
+  const [_selectedMovies, setSelectedMovies] = useState<string[]>([])
   const [realism, setRealism] = useState('LOW')
   const [mashMovies] = useMutation(GENERATE_MASHUP_MUTATION, {
+    onQueryUpdated: (query) => {
+      console.log('query', query)
+    },
     onCompleted: (data) => {
       console.log('data', data)
+      setIsMashing(false)
+      toast.success('Movie mashup created')
       navigate(routes.movieMashup({ id: data.mashMovies.id }))
     },
     onError: (error) => {
@@ -67,6 +71,9 @@ export const Success = ({
 
   const handleSelectionComplete = (newSelection: string[]) => {
     setSelectedMovies(newSelection)
+    toast.loading(`Mashing movies ...`, {
+      duration: 7_000,
+    })
     setIsMashing(true)
     setTimeout(() => {
       console.log('mashing movies')
@@ -79,11 +86,11 @@ export const Success = ({
           },
         },
       })
-    }, 2000)
+    }, 1_000)
   }
 
   if (isMashing) {
-    return <MashingAnimation movies={movies} selectedMovies={selectedMovies} />
+    return <LoadingComponent />
   }
 
   return (

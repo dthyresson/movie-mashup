@@ -7,7 +7,7 @@ export const schema = gql`
     tagline: String!
     treatment: String!
     description: String!
-    photo: String!
+    photos: [Photo!]!
     firstMovie: Movie!
     firstMovieId: String!
     secondMovie: Movie!
@@ -25,7 +25,7 @@ export const schema = gql`
     tagline: String!
     treatment: String!
     description: String!
-    photo: String!
+    posterUrl: String!
     firstMovieId: String!
     secondMovieId: String!
   }
@@ -35,7 +35,7 @@ export const schema = gql`
     tagline: String
     treatment: String
     description: String
-    photo: String
+    posterUrl: String
     firstMovieId: String
     secondMovieId: String
   }

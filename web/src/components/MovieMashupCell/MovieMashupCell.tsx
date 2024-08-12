@@ -25,7 +25,10 @@ export const QUERY: TypedDocumentNode<
       tagline
       treatment
       description
-      photo
+      photos {
+        id
+        imageUrl
+      }
       firstMovie {
         id
         title
@@ -58,7 +61,7 @@ export const Success = ({
       <Metadata
         title={movieMashup.title}
         description={movieMashup.tagline}
-        ogImage={movieMashup.photo}
+        ogImage={movieMashup.photos[0].imageUrl}
       />
 
       <MovieMashupComponent movieMashup={movieMashup} />

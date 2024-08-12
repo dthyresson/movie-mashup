@@ -1,6 +1,7 @@
 import type {
   Movie as PMovie,
   MovieMashup as PMovieMashup,
+  Photo as PPhoto,
 } from '@prisma/client'
 
 // You may very reasonably ask yourself, 'what is this file?' and why do I need it.
@@ -25,11 +26,17 @@ export interface CreateMovieMashupInput {
   __typename?: 'CreateMovieMashupInput'
   description: string
   firstMovieId: string
-  photo: string
+  posterUrl: string
   secondMovieId: string
   tagline: string
   title: string
   treatment: string
+}
+
+export interface CreatePhotoInput {
+  __typename?: 'CreatePhotoInput'
+  imageUrl: string
+  movieMashupId?: string | null
 }
 
 export interface MashMoviesInput {
@@ -42,11 +49,14 @@ export interface Mutation {
   __typename?: 'Mutation'
   createMovie: PMovie
   createMovieMashup: PMovieMashup
+  createPhoto: PPhoto
   deleteMovie: PMovie
   deleteMovieMashup: PMovieMashup
+  deletePhoto: PPhoto
   mashMovies: PMovieMashup
   updateMovie: PMovie
   updateMovieMashup: PMovieMashup
+  updatePhoto: PPhoto
 }
 
 export interface Query {
@@ -55,6 +65,8 @@ export interface Query {
   movieMashup?: PMovieMashup | null
   movieMashups: PMovieMashup[]
   movies: PMovie[]
+  photo?: PPhoto | null
+  photos: PPhoto[]
   redwood?: Redwood | null
 }
 
@@ -77,14 +89,21 @@ export interface UpdateMovieMashupInput {
   __typename?: 'UpdateMovieMashupInput'
   description?: string | null
   firstMovieId?: string | null
-  photo?: string | null
+  posterUrl?: string | null
   secondMovieId?: string | null
   tagline?: string | null
   title?: string | null
   treatment?: string | null
 }
 
+export interface UpdatePhotoInput {
+  __typename?: 'UpdatePhotoInput'
+  imageUrl?: string | null
+  movieMashupId?: string | null
+}
+
 type DateTime = any
 type JSON = any
 export type Movie = PMovie
 export type MovieMashup = PMovieMashup
+export type Photo = PPhoto

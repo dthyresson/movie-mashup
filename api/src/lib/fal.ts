@@ -21,8 +21,9 @@ export const generateMovieMashupPosterUrl = async ({
     `
   // 'fast-lightning-sdxl'
   // "flux/schnell";
-  //"aura-flow"; //
-  const model = 'flux/schnell'
+  // "aura-flow"
+  // "flux-realism"
+  const model = 'aura-flow'
   const options = {
     image_size: 'landscape_16_9',
     num_inference_steps: 4,

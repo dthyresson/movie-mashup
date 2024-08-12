@@ -14,7 +14,7 @@ const MovieMashupCard = ({
           {movieMashup.title}
         </h2>
         <img
-          src={movieMashup.photo}
+          src={movieMashup.photos[0]?.imageUrl}
           alt={movieMashup.title}
           className="h-48 w-full rounded-t-lg object-cover shadow-sm"
         />

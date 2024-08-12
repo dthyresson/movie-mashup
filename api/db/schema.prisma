@@ -34,9 +34,18 @@ model MovieMashup {
   tagline       String
   treatment     String
   description   String
-  photo         String
+  photos        Photo[]
   firstMovie    Movie    @relation("firstMovie", fields: [firstMovieId], references: [id])
   firstMovieId  String
   secondMovie   Movie    @relation("secondMovie", fields: [secondMovieId], references: [id])
   secondMovieId String
+}
+
+model Photo {
+  id            String       @id @default(cuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  imageUrl      String
+  movieMashup   MovieMashup? @relation(fields: [movieMashupId], references: [id])
+  movieMashupId String?
 }

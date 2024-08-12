@@ -61,7 +61,7 @@ const MovieMashupComponent = ({ movieMashup }) => {
         <div className="relative mb-2 aspect-video w-full max-w-2xl bg-gradient-to-b from-slate-50 via-slate-200 to-slate-100">
           <img
             className="absolute inset-0 h-full w-full border-gray-200 object-contain p-4"
-            src={movieMashup.photo}
+            src={movieMashup.photos[0]?.imageUrl}
             alt={movieMashup.title}
             loading="lazy"
           />

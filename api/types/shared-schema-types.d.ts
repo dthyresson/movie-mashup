@@ -11,11 +11,17 @@ export interface CreateMovieMashupInput {
   __typename?: 'CreateMovieMashupInput'
   description: string
   firstMovieId: string
-  photo: string
+  posterUrl: string
   secondMovieId: string
   tagline: string
   title: string
   treatment: string
+}
+
+export interface CreatePhotoInput {
+  __typename?: 'CreatePhotoInput'
+  imageUrl: string
+  movieMashupId?: string | null
 }
 
 export interface MashMoviesInput {
@@ -46,7 +52,7 @@ export interface MovieMashup {
   firstMovieId: string
   id: string
   movies: Array<Movie>
-  photo: string
+  photos: Photo[]
   secondMovie: Movie
   secondMovieId: string
   tagline: string
@@ -59,11 +65,24 @@ export interface Mutation {
   __typename?: 'Mutation'
   createMovie: Movie
   createMovieMashup: MovieMashup
+  createPhoto: Photo
   deleteMovie: Movie
   deleteMovieMashup: MovieMashup
+  deletePhoto: Photo
   mashMovies: MovieMashup
   updateMovie: Movie
   updateMovieMashup: MovieMashup
+  updatePhoto: Photo
+}
+
+export interface Photo {
+  __typename?: 'Photo'
+  createdAt: DateTime
+  id: string
+  imageUrl: string
+  movieMashup?: MovieMashup | null
+  movieMashupId?: string | null
+  updatedAt: DateTime
 }
 
 export interface Query {
@@ -72,6 +91,8 @@ export interface Query {
   movieMashup?: MovieMashup | null
   movieMashups: MovieMashup[]
   movies: Movie[]
+  photo?: Photo | null
+  photos: Photo[]
   redwood?: Redwood | null
 }
 
@@ -94,11 +115,17 @@ export interface UpdateMovieMashupInput {
   __typename?: 'UpdateMovieMashupInput'
   description?: string | null
   firstMovieId?: string | null
-  photo?: string | null
+  posterUrl?: string | null
   secondMovieId?: string | null
   tagline?: string | null
   title?: string | null
   treatment?: string | null
+}
+
+export interface UpdatePhotoInput {
+  __typename?: 'UpdatePhotoInput'
+  imageUrl?: string | null
+  movieMashupId?: string | null
 }
 
 type DateTime = any

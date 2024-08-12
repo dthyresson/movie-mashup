@@ -23,7 +23,10 @@ export const QUERY: TypedDocumentNode<
       id
       title
       tagline
-      photo
+      photos {
+        id
+        imageUrl
+      }
       firstMovie {
         title
       }

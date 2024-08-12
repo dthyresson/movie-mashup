@@ -37,17 +37,29 @@ const Footer = () => (
       <Link to={routes.about()} className="hover:text-orange-500">
         About
       </Link>
-      {['RedwoodJS', 'GitHub', 'Cursor', 'Langbase', 'Tailwind', 'Unkey'].map(
-        (item) => (
-          <a
-            key={item}
-            href={`https://${item.toLowerCase()}.com`}
-            className="hover:text-orange-500"
-          >
-            {item}
-          </a>
-        )
-      )}
+      {[
+        'RedwoodJS',
+        'GitHub',
+        'Cursor',
+        ['Fal', 'ai'],
+        'Langbase',
+        'Tailwind',
+        'Unkey',
+      ].map((item) => (
+        <a
+          key={Array.isArray(item) ? item[0] : item}
+          href={`https://${
+            Array.isArray(item)
+              ? item[0].toLowerCase() + '.' + item[1]
+              : item.toLowerCase() + '.com'
+          }`}
+          className="hover:text-orange-500"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {Array.isArray(item) ? item[0] : item}
+        </a>
+      ))}
     </div>
   </footer>
 )

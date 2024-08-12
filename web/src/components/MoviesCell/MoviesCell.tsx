@@ -29,7 +29,13 @@ export const QUERY: TypedDocumentNode<MoviesQuery, MoviesQueryVariables> = gql`
 
 export const Loading = () => <LoadingComponent />
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div className="flex min-h-[70vh] items-center justify-center">
+    <p className="text-center font-movie-title text-2xl text-gray-500">
+      No movies found
+    </p>
+  </div>
+)
 
 export const Failure = ({ error }: CellFailureProps) => (
   <FailureComponent error={error} />

@@ -4,7 +4,6 @@ import type {
   CreateMovieResolver,
   UpdateMovieResolver,
   DeleteMovieResolver,
-  MovieTypeResolvers,
 } from 'types/movies'
 
 import { db } from 'src/lib/db'
@@ -40,17 +39,4 @@ export const deleteMovie: DeleteMovieResolver = async ({ id }) => {
   return await db.movie.delete({
     where: { id },
   })
-}
-
-export const Movie: MovieTypeResolvers = {
-  firstMovieMashups: async (_obj, { root }) => {
-    return await db.movie
-      .findUnique({ where: { id: root?.id } })
-      .firstMovieMashups()
-  },
-  secondMovieMashups: async (_obj, { root }) => {
-    return await db.movie
-      .findUnique({ where: { id: root?.id } })
-      .secondMovieMashups()
-  },
 }

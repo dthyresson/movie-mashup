@@ -5,7 +5,6 @@ import type {
   UpdatePhotoResolver,
   DeletePhotoResolver,
   SetMovieMashupPhotoResolver,
-  PhotoTypeResolvers,
 } from 'types/photos'
 
 import { db } from 'src/lib/db'
@@ -19,20 +18,23 @@ export const setMovieMashupPhoto: SetMovieMashupPhotoResolver = async ({
   await db.photo.update({
     data: {
       movieMashupId: input.movieMashupId,
+      updatedAt: new Date(),
     },
     where: { id: input.photoId },
+    include: { movieMashup: true },
   })
 
   return await movieMashup({ id: input.movieMashupId })
 }
 
 export const photos: PhotosResolver = async () => {
-  return await db.photo.findMany()
+  return await db.photo.findMany({ include: { movieMashup: true } })
 }
 
 export const photo: PhotoResolver = async ({ id }) => {
   return await db.photo.findUnique({
     where: { id },
+    include: { movieMashup: true },
   })
 }
 
@@ -48,6 +50,7 @@ export const createPhoto: CreatePhotoResolver = async ({ input }) => {
       imageUrl,
       falModel,
     },
+    include: { movieMashup: true },
   })
 
   const updatedMashup = await movieMashup({ id: input.movieMashupId })
@@ -59,6 +62,7 @@ export const updatePhoto: UpdatePhotoResolver = async ({ id, input }) => {
   return await db.photo.update({
     data: input,
     where: { id },
+    include: { movieMashup: true },
   })
 }
 
@@ -66,10 +70,4 @@ export const deletePhoto: DeletePhotoResolver = async ({ id }) => {
   return await db.photo.delete({
     where: { id },
   })
-}
-
-export const Photo: PhotoTypeResolvers = {
-  movieMashup: async (_obj, { root }) => {
-    return await db.photo.findUnique({ where: { id: root?.id } }).movieMashup()
-  },
 }

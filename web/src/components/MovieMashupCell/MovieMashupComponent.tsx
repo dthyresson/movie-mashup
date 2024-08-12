@@ -64,9 +64,11 @@ const MovieMashupComponent = ({ movieMashup }) => {
   // const [realism, setRealism] = useState('MEDIUM')
 
   const [createPhoto] = useMutation(CREATE_PHOTO_MUTATION, {
-    onCompleted: (_data) => {
+    onCompleted: (data) => {
       toast.success(`Photo generated!`)
-      navigate(routes.movieMashups())
+      navigate(routes.movieMashup({ id: data.createPhoto.id }), {
+        replace: true,
+      })
     },
   })
 
@@ -78,9 +80,9 @@ const MovieMashupComponent = ({ movieMashup }) => {
     const baseTime = 2_000
     const realismFactor = {
       LOW: 1,
-      MEDIUM: 4,
-      HIGH: 8,
-      ULTRA: 12,
+      MEDIUM: 12,
+      HIGH: 20,
+      ULTRA: 24,
     }
     const duration = baseTime * (realismFactor[realism] || 1)
     toast.loading('Generating photo...', { duration })
@@ -90,6 +92,15 @@ const MovieMashupComponent = ({ movieMashup }) => {
           movieMashupId: movieMashup.id,
           realism: realism,
         },
+      },
+      onCompleted: (data) => {
+        toast.success('Photo generated!')
+        navigate(routes.movieMashup({ id: data.createPhoto.id }), {
+          replace: true,
+        })
+        setTimeout(() => {
+          window.location.reload()
+        }, 1_000)
       },
     })
   }

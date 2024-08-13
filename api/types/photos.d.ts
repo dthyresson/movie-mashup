@@ -1,7 +1,3 @@
-import type {
-  MovieMashup as PMovieMashup,
-  Photo as PPhoto,
-} from '@prisma/client'
 import type { GraphQLResolveInfo } from 'graphql'
 
 import type { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/types'
@@ -88,20 +84,4 @@ export interface DeletePhotoResolver {
       info: GraphQLResolveInfo
     }
   ): Promise<RTPhoto>
-}
-
-export interface PhotoTypeResolvers {
-  /** SDL: movieMashup: MovieMashup */
-  movieMashup: (
-    args: undefined,
-    obj: {
-      root: PhotoAsParent
-      context?: RedwoodGraphQLContext
-      info?: GraphQLResolveInfo
-    }
-  ) => Promise<RTMovieMashup | null>
-}
-
-type PhotoAsParent = PPhoto & {
-  movieMashup: () => Promise<PMovieMashup | null>
 }

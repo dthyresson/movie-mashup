@@ -18,15 +18,10 @@ export const generateMovieMashupPosterUrl = async ({
 }) => {
   logger.info({ title, tagline, treatment, description })
 
-  const prompt = `
-    Artistic style of a movie poster with imagery for the movie called ${tagline} scene:
-
-    Scene: ${description}
-
-    Include the title "${title}" and tagline "${tagline}" in the poster.
-
-    Include credits and rating.
-    `
+  const prompt = `Artistic style of a movie poster with imagery for the movie called "${tagline}".
+  Include the title "${title}" and tagline "${tagline}" in the poster.
+  Include credits and rating.
+  Scene: ${description}`
 
   const falModel = PHOTO_REALISM_SETTINGS[realism]
 

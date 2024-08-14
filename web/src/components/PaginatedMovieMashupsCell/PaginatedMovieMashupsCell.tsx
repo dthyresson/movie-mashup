@@ -99,7 +99,7 @@ export const Success = ({
     const newLimit = parseInt(event.target.value, 10)
     setCurrentLimit(newLimit)
     setCurrentPage(1)
-    queryResult.refetch({
+    refetch({
       page: 1,
       limit: newLimit,
     })

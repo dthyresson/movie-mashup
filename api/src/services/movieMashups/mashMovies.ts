@@ -2,6 +2,7 @@ import type { MashMoviesResolver } from 'types/mashMovies'
 
 import { ValidationError } from '@redwoodjs/graphql-server'
 
+import { cache } from 'src/functions/graphql'
 import { db } from 'src/lib/db'
 import { generateMovieMashupPosterUrl } from 'src/lib/fal'
 import { movieMashupGenerator } from 'src/lib/langbase'
@@ -59,6 +60,8 @@ export const mashMovies: MashMoviesResolver = async ({ input }) => {
         secondMovie: true,
       },
     })
+
+    cache.invalidate([{ typename: 'MovieMashup' }])
 
     return mashup
   } catch (error) {

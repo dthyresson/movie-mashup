@@ -14,17 +14,9 @@ export const schema = gql`
     secondMovieId: String!
     movies: [Movie]!
   }
-  type PaginatedMovieMashups implements PaginatedItems {
-    items: [MovieMashup!]!
-    count: Int!
-    page: Int!
-    limit: Int!
-  }
 
   type Query {
     movieMashups: [MovieMashup!]! @skipAuth
-    paginatedMovieMashups(page: Int!, limit: Int!): PaginatedMovieMashups
-      @skipAuth
     movieMashup(id: String!): MovieMashup @skipAuth
   }
 
@@ -50,21 +42,7 @@ export const schema = gql`
     secondMovieId: String
   }
 
-  enum Realism {
-    LOW
-    MEDIUM
-    HIGH
-    ULTRA
-  }
-  input MashMoviesInput {
-    firstMovieId: String!
-    secondMovieId: String!
-    realism: String!
-  }
-
   type Mutation {
-    mashMovies(input: MashMoviesInput!): MovieMashup!
-      @rateLimited(identifier: "mashMovies")
     createMovieMashup(input: CreateMovieMashupInput!): MovieMashup!
       @blocked
       @rateLimited(identifier: "setMovieMashupPhoto")

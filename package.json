@@ -10,6 +10,8 @@
     "@prisma/client": "5.18.0",
     "@redwoodjs/core": "7.7.3",
     "@redwoodjs/project-config": "7.7.3",
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "0.98.0",
     "json2csv": "6.0.0-alpha.2",
     "prettier-plugin-tailwindcss": "0.4.1",
     "prisma": "5.18.0",
@@ -25,5 +27,8 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "yarn@4.3.0",
+  "@snaplet/seed": {
+    "config": "scripts/snaplet/seed.config.ts"
+  }
 }

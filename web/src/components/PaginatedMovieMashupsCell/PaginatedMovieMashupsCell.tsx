@@ -124,6 +124,10 @@ export const Success = ({
         handlePageChange={handlePageChange}
         currentPage={currentPage}
         totalPages={paginated.totalPages}
+        firstLabel="⏮️"
+        lastLabel="⏭️"
+        previousLabel="⬅️"
+        nextLabel="➡️"
       />
     </>
   )

@@ -2,12 +2,20 @@ export type PaginationProps = {
   handlePageChange: (newPage: number) => void
   currentPage: number
   totalPages: number
+  firstLabel?: string
+  lastLabel?: string
+  previousLabel?: string
+  nextLabel?: string
 }
 
 export const Pagination = ({
   handlePageChange,
   currentPage,
   totalPages,
+  firstLabel = 'First',
+  lastLabel = 'Last',
+  previousLabel = 'Previous',
+  nextLabel = 'Next',
 }: PaginationProps) => {
   const renderPageButtons = () => {
     const buttons = []
@@ -50,14 +58,14 @@ export const Pagination = ({
         disabled={currentPage === 1}
         className="rounded-md border bg-gray-100 px-4 py-2 text-gray-800 disabled:opacity-50"
       >
-        First
+        {firstLabel}
       </button>
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className="rounded-md border bg-gray-100 px-4 py-2 text-gray-800 disabled:opacity-50"
       >
-        Previous
+        {previousLabel}
       </button>
       {renderPageButtons()}
       <button
@@ -65,14 +73,14 @@ export const Pagination = ({
         disabled={currentPage === totalPages}
         className="rounded-md border bg-gray-100 px-4 py-2 text-gray-800 disabled:opacity-50"
       >
-        Next
+        {nextLabel}
       </button>
       <button
         onClick={() => handlePageChange(totalPages)}
         disabled={currentPage === totalPages}
         className="rounded-md border bg-gray-100 px-4 py-2 text-gray-800 disabled:opacity-50"
       >
-        Last
+        {lastLabel}
       </button>
     </div>
   )

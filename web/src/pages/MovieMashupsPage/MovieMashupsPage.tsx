@@ -1,13 +1,13 @@
 import { Metadata } from '@redwoodjs/web'
 
-import MovieMashupsCell from 'src/components/MovieMashupsCell'
+import PaginatedMovieMashupsCell from 'src/components/PaginatedMovieMashupsCell'
 
 const MovieMashupsPage = () => {
   return (
     <>
       <Metadata title="Movie Mashups" description="A cinematic adventure" />
 
-      <MovieMashupsCell />
+      <PaginatedMovieMashupsCell page={1} limit={2} />
     </>
   )
 }

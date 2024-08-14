@@ -4,6 +4,7 @@ export const schema = gql`
     count: Int!
     page: Int!
     limit: Int!
+    totalPages: Int!
   }
 
   input MashMoviesInput {

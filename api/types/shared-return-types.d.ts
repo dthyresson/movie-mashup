@@ -67,6 +67,7 @@ export interface PaginatedItems {
   count: number
   limit: number
   page: number
+  totalPages: number
 }
 
 export interface PaginatedMovieMashups {
@@ -75,6 +76,7 @@ export interface PaginatedMovieMashups {
   items: PMovieMashup[]
   limit: number
   page: number
+  totalPages: number
 }
 
 export interface Query {

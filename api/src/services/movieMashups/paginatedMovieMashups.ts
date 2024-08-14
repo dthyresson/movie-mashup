@@ -25,11 +25,13 @@ export const paginatedMovieMashups: PaginatedMovieMashupsResolver = async ({
   })
 
   const count = await db.movieMashup.count()
+  const totalPages = Math.ceil(count / limit)
 
   return {
     items,
     count,
     page,
     limit,
+    totalPages,
   }
 }

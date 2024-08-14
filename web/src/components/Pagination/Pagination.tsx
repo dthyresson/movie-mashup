@@ -85,7 +85,7 @@ type ShowSelectProps = {
 
 export const ShowSelect = ({ limit, handleLimitChange }: ShowSelectProps) => {
   return (
-    <div className="flex justify-end p-4 font-movie-subtitle">
+    <div className="flex justify-end font-movie-subtitle">
       <label htmlFor="show" className="mr-2 self-center">
         Show:
       </label>
@@ -101,6 +101,27 @@ export const ShowSelect = ({ limit, handleLimitChange }: ShowSelectProps) => {
         <option value={50}>50</option>
         <option value={100}>100</option>
       </select>
+    </div>
+  )
+}
+
+export type PaginationHeaderProps = ShowSelectProps & {
+  caption: string
+  totalItems: number
+}
+export const PaginationHeader = ({
+  caption,
+  totalItems,
+  limit,
+  handleLimitChange,
+}: PaginationHeaderProps) => {
+  return (
+    <div className="my-4 flex items-center justify-between font-movie-subtitle">
+      <p className="font-movie-title text-xl text-gray-900">
+        {caption}{' '}
+        <span className="font-movie- text-gray-900">({totalItems})</span>
+      </p>
+      <ShowSelect limit={limit} handleLimitChange={handleLimitChange} />
     </div>
   )
 }

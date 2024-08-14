@@ -80,18 +80,18 @@ export interface Mutation {
 
 export interface PaginatedItems {
   __typename?: 'PaginatedItems'
-  count: number
   limit: number
   page: number
+  totalItems: number
   totalPages: number
 }
 
 export interface PaginatedMovieMashups {
   __typename?: 'PaginatedMovieMashups'
-  count: number
   items: MovieMashup[]
   limit: number
   page: number
+  totalItems: number
   totalPages: number
 }
 

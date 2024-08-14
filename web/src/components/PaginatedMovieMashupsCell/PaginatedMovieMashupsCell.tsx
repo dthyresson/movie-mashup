@@ -15,7 +15,10 @@ import type {
 import FailureComponent from 'src/components/FailureComponent'
 import LoadingComponent from 'src/components/LoadingComponent'
 import MovieMashupCard from 'src/components/MovieMashupsCell/MovieMashupCard'
-import { Pagination, ShowSelect } from 'src/components/Pagination/Pagination'
+import {
+  Pagination,
+  PaginationHeader,
+} from 'src/components/Pagination/Pagination'
 
 export const beforeQuery = (props) => {
   const { page, limit } = props
@@ -48,10 +51,10 @@ export const QUERY: TypedDocumentNode<
           title
         }
       }
-      count
       limit
       page
       totalPages
+      totalItems
     }
   }
 `
@@ -105,8 +108,13 @@ export const Success = ({
 
   return (
     <>
-      <ShowSelect limit={limit} handleLimitChange={handleLimitChange} />
-      <div className="grid grid-cols-1 gap-4 p-8 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:grid-cols-4 ">
+      <PaginationHeader
+        totalItems={paginated.totalItems}
+        limit={limit}
+        handleLimitChange={handleLimitChange}
+        caption="Mashups"
+      />
+      <div className="grid grid-cols-1 gap-4 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:grid-cols-4 ">
         {paginated.items.map((item) => (
           <MovieMashupCard key={item.id} movieMashup={item} />
         ))}

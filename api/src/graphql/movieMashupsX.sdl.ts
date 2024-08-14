@@ -1,9 +1,9 @@
 export const schema = gql`
   type PaginatedMovieMashups implements PaginatedItems {
     items: [MovieMashup!]!
-    count: Int!
     page: Int!
     limit: Int!
+    totalItems: Int!
     totalPages: Int!
   }
 

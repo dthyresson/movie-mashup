@@ -85,12 +85,14 @@ export const Success = ({
   paginated,
   queryResult,
 }: CellSuccessProps<PaginatedMovieMashupsQuery>) => {
-  const [currentPage, setCurrentPage] = useState(paginated.page)
-  const [limit, setLimit] = useState(paginated.limit)
+  const { items, limit, page, totalPages, totalItems } = paginated
+  const { refetch } = queryResult
+  const [currentPage, setCurrentPage] = useState(page)
+  const [currentLimit, setCurrentLimit] = useState(limit)
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage)
-    queryResult.refetch({
+    refetch({
       page: newPage,
       limit: limit,
     })
@@ -98,7 +100,7 @@ export const Success = ({
 
   const handleLimitChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newLimit = parseInt(event.target.value, 10)
-    setLimit(newLimit)
+    setCurrentLimit(newLimit)
     setCurrentPage(1)
     queryResult.refetch({
       page: 1,
@@ -109,13 +111,13 @@ export const Success = ({
   return (
     <>
       <PaginationHeader
-        totalItems={paginated.totalItems}
-        limit={limit}
+        totalItems={totalItems}
+        currentLimit={currentLimit}
         handleLimitChange={handleLimitChange}
         caption="Mashups"
       />
       <div className="grid grid-cols-1 gap-4 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:grid-cols-4 ">
-        {paginated.items.map((item) => (
+        {items.map((item) => (
           <MovieMashupCard key={item.id} movieMashup={item} />
         ))}
       </div>
@@ -123,7 +125,7 @@ export const Success = ({
       <Pagination
         handlePageChange={handlePageChange}
         currentPage={currentPage}
-        totalPages={paginated.totalPages}
+        totalPages={totalPages}
         firstLabel="⏮️"
         lastLabel="⏭️"
         previousLabel="⬅️"

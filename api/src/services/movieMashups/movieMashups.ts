@@ -4,42 +4,9 @@ import type {
   CreateMovieMashupResolver,
   UpdateMovieMashupResolver,
   DeleteMovieMashupResolver,
-  PaginatedMovieMashupsResolver,
 } from 'types/movieMashups'
 
 import { db } from 'src/lib/db'
-
-export const paginatedMovieMashups: PaginatedMovieMashupsResolver = async ({
-  page = 1,
-  limit = 10,
-}) => {
-  const items = await db.movieMashup.findMany({
-    include: {
-      photos: {
-        orderBy: {
-          updatedAt: 'desc',
-        },
-        take: 1, // Include only the most recent photo
-      },
-      firstMovie: true,
-      secondMovie: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    skip: (page - 1) * limit,
-    take: limit,
-  })
-
-  const count = await db.movieMashup.count()
-
-  return {
-    items,
-    count,
-    page,
-    limit,
-  }
-}
 
 export const movieMashups: MovieMashupsResolver = async () => {
   return await db.movieMashup.findMany({

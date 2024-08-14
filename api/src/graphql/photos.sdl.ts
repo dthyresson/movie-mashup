@@ -5,8 +5,8 @@ export const schema = gql`
     updatedAt: DateTime!
     falModel: String!
     imageUrl: String!
-    movieMashup: MovieMashup
-    movieMashupId: String
+    movieMashup: MovieMashup!
+    movieMashupId: String!
   }
 
   type Query {
@@ -16,7 +16,7 @@ export const schema = gql`
 
   input CreatePhotoInput {
     realism: Realism!
-    movieMashupId: String
+    movieMashupId: String!
   }
 
   input UpdatePhotoInput {

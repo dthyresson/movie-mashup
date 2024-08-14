@@ -21,7 +21,7 @@ export interface CreateMovieMashupInput {
 
 export interface CreatePhotoInput {
   __typename?: 'CreatePhotoInput'
-  movieMashupId?: string | null
+  movieMashupId: string
   realism: Realism
 }
 
@@ -78,14 +78,29 @@ export interface Mutation {
   updatePhoto: Photo
 }
 
+export interface PaginatedItems {
+  __typename?: 'PaginatedItems'
+  count: number
+  limit: number
+  page: number
+}
+
+export interface PaginatedMovieMashups {
+  __typename?: 'PaginatedMovieMashups'
+  count: number
+  items: MovieMashup[]
+  limit: number
+  page: number
+}
+
 export interface Photo {
   __typename?: 'Photo'
   createdAt: DateTime
   falModel: string
   id: string
   imageUrl: string
-  movieMashup?: MovieMashup | null
-  movieMashupId?: string | null
+  movieMashup: MovieMashup
+  movieMashupId: string
   updatedAt: DateTime
 }
 
@@ -95,6 +110,7 @@ export interface Query {
   movieMashup?: MovieMashup | null
   movieMashups: MovieMashup[]
   movies: Movie[]
+  paginatedMovieMashups?: PaginatedMovieMashups | null
   photo?: Photo | null
   photos: Photo[]
   redwood?: Redwood | null

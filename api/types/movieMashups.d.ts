@@ -2,13 +2,28 @@ import type { GraphQLResolveInfo } from 'graphql'
 
 import type { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/types'
 
-import type { MovieMashup as RTMovieMashup } from './shared-return-types'
+import type {
+  PaginatedMovieMashups as RTPaginatedMovieMashups,
+  MovieMashup as RTMovieMashup,
+} from './shared-return-types'
 import type {
   CreateMovieMashupInput,
   UpdateMovieMashupInput,
   Query,
   Mutation,
 } from './shared-schema-types'
+
+/** SDL: paginatedMovieMashups(limit: Int!, page: Int!): PaginatedMovieMashups */
+export interface PaginatedMovieMashupsResolver {
+  (
+    args: { limit: number; page: number },
+    obj?: {
+      root: Query
+      context: RedwoodGraphQLContext
+      info: GraphQLResolveInfo
+    }
+  ): Promise<RTPaginatedMovieMashups | null>
+}
 
 /** SDL: movieMashups: [MovieMashup!]! */
 export interface MovieMashupsResolver {

@@ -4,7 +4,6 @@ import type {
   CreatePhotoResolver,
   UpdatePhotoResolver,
   DeletePhotoResolver,
-  SetMovieMashupPhotoResolver,
 } from 'types/photos'
 
 import { db } from 'src/lib/db'

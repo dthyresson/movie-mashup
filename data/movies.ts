@@ -588,4 +588,20 @@ export const MOVIES = [
     photo: '/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg',
     releaseDate: '1990-09-19T00:00:00.000Z',
   },
+  {
+    id: '11639-the-dark-crystal',
+    title: 'The Dark Crystal',
+    overview:
+      'On another planet in the distant past, a Gelfling embarks on a quest to find the missing shard of a magical crystal and restore order to his world, before the grotesque race of Skeksis find and use the crystal for evil.',
+    photo: '/6g1Kh73qQRosyhRJpL3euQpMxOE.jpg',
+    releaseDate: '1982-12-17T00:00:00.000Z',
+  },
+  {
+    id: '11379-the-adventures-of-buckaroo-banzai-across-the-8th-dimension',
+    title: 'The Adventures of Buckaroo Banzai Across the 8th Dimension',
+    overview:
+      'Adventurer/surgeon/rock musician Buckaroo Banzai and his band of men, the Hong Kong Cavaliers, take on evil alien invaders from the 8th dimension.',
+    photo: '/l9NDh3IYPAmSYjqMcxPfUh83Xwm.jpg',
+    releaseDate: '1984-08-15T00:00:00.000Z',
+  },
 ]

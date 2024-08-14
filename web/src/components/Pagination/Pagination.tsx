@@ -77,3 +77,30 @@ export const Pagination = ({
     </div>
   )
 }
+
+type ShowSelectProps = {
+  limit: number
+  handleLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+}
+
+export const ShowSelect = ({ limit, handleLimitChange }: ShowSelectProps) => {
+  return (
+    <div className="flex justify-end p-4 font-movie-subtitle">
+      <label htmlFor="show" className="mr-2 self-center">
+        Show:
+      </label>
+      <select
+        id="show"
+        value={limit}
+        onChange={handleLimitChange}
+        className="rounded border p-1"
+      >
+        <option value={5}>5</option>
+        <option value={10}>10</option>
+        <option value={20}>20</option>
+        <option value={50}>50</option>
+        <option value={100}>100</option>
+      </select>
+    </div>
+  )
+}

@@ -7,7 +7,7 @@ const MovieMashupsPage = () => {
     <>
       <Metadata title="Movie Mashups" description="A cinematic adventure" />
 
-      <PaginatedMovieMashupsCell page={1} limit={2} />
+      <PaginatedMovieMashupsCell page={1} limit={10} />
     </>
   )
 }

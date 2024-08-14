@@ -15,10 +15,7 @@ import type {
 import FailureComponent from 'src/components/FailureComponent'
 import LoadingComponent from 'src/components/LoadingComponent'
 import MovieMashupCard from 'src/components/MovieMashupsCell/MovieMashupCard'
-import {
-  Pagination,
-  PaginationHeader,
-} from 'src/components/Pagination/Pagination'
+import { Pagination } from 'src/components/Pagination/Pagination'
 
 export const beforeQuery = (props) => {
   const { page, limit } = props
@@ -110,27 +107,25 @@ export const Success = ({
 
   return (
     <>
-      <PaginationHeader
-        totalItems={totalItems}
-        currentLimit={currentLimit}
-        handleLimitChange={handleLimitChange}
-        caption="Mashups"
-      />
-      <div className="grid grid-cols-1 gap-4 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:grid-cols-4 ">
-        {items.map((item) => (
-          <MovieMashupCard key={item.id} movieMashup={item} />
-        ))}
-      </div>
-
       <Pagination
-        handlePageChange={handlePageChange}
         currentPage={currentPage}
         totalPages={totalPages}
         firstLabel="⏮️"
         lastLabel="⏭️"
         previousLabel="⬅️"
         nextLabel="➡️"
-      />
+        totalItems={totalItems}
+        currentLimit={currentLimit}
+        handleLimitChange={handleLimitChange}
+        handlePageChange={handlePageChange}
+        caption="Mashups"
+      >
+        <div className="grid grid-cols-1 gap-4 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:grid-cols-4 ">
+          {items.map((item) => (
+            <MovieMashupCard key={item.id} movieMashup={item} />
+          ))}
+        </div>
+      </Pagination>
     </>
   )
 }

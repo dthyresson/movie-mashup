@@ -1,5 +1,10 @@
+// Type Definitions
 export type PaginationProps = {
   handlePageChange: (newPage: number) => void
+  handleLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  currentLimit: number
+  caption: string
+  totalItems: number
   currentPage: number
   totalPages: number
   firstLabel?: string
@@ -8,7 +13,60 @@ export type PaginationProps = {
   nextLabel?: string
 }
 
+export type PaginationControlProps = Pick<
+  PaginationProps,
+  | 'handlePageChange'
+  | 'currentPage'
+  | 'totalPages'
+  | 'firstLabel'
+  | 'lastLabel'
+  | 'previousLabel'
+  | 'nextLabel'
+>
+
+export type ShowSelectProps = Pick<
+  PaginationProps,
+  'currentLimit' | 'handleLimitChange'
+>
+
+export type PaginationHeaderProps = Pick<
+  PaginationProps,
+  'currentLimit' | 'handleLimitChange' | 'caption' | 'totalItems'
+>
+
+// Pagination Component
 export const Pagination = ({
+  children,
+  className,
+  ...props // Use the spread operator to include all PaginationProps
+}: {
+  children: React.ReactNode
+  className?: string
+} & PaginationProps) => {
+  return (
+    <div className={className}>
+      <PaginationHeader
+        handleLimitChange={props.handleLimitChange}
+        currentLimit={props.currentLimit}
+        caption={props.caption}
+        totalItems={props.totalItems}
+      />
+      {children}
+      <PaginationControls
+        handlePageChange={props.handlePageChange}
+        currentPage={props.currentPage}
+        totalPages={props.totalPages}
+        firstLabel={props.firstLabel}
+        lastLabel={props.lastLabel}
+        previousLabel={props.previousLabel}
+        nextLabel={props.nextLabel}
+      />
+    </div>
+  )
+}
+
+// Pagination Controls Component
+export const PaginationControls = ({
   handlePageChange,
   currentPage,
   totalPages,
@@ -16,7 +74,7 @@ export const Pagination = ({
   lastLabel = 'Last',
   previousLabel = 'Previous',
   nextLabel = 'Next',
-}: PaginationProps) => {
+}: PaginationControlProps) => {
   const renderPageButtons = () => {
     const buttons = []
     const maxVisiblePages = 5 // Total number of page buttons to show
@@ -86,11 +144,7 @@ export const Pagination = ({
   )
 }
 
-type ShowSelectProps = {
-  currentLimit: number
-  handleLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
-}
-
+// Show Select Component
 export const ShowSelect = ({
   currentLimit,
   handleLimitChange,
@@ -116,10 +170,7 @@ export const ShowSelect = ({
   )
 }
 
-export type PaginationHeaderProps = ShowSelectProps & {
-  caption: string
-  totalItems: number
-}
+// Pagination Header Component
 export const PaginationHeader = ({
   caption,
   totalItems,

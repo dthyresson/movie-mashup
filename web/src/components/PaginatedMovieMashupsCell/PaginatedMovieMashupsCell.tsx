@@ -86,23 +86,43 @@ export const Success = ({
   const { refetch } = queryResult
   const [currentPage, setCurrentPage] = useState(page)
   const [currentLimit, setCurrentLimit] = useState(limit)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const handlePageChange = (newPage: number) => {
+  const handlePageChange = async (newPage: number) => {
     setCurrentPage(newPage)
-    refetch({
+    const { loading, error } = await refetch({
       page: newPage,
       limit: limit,
     })
+    setLoading(loading)
+    setError(error)
   }
 
-  const handleLimitChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleLimitChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const newLimit = parseInt(event.target.value, 10)
     setCurrentLimit(newLimit)
     setCurrentPage(1)
-    refetch({
+    const { loading, error } = await refetch({
       page: 1,
       limit: newLimit,
     })
+    setLoading(loading)
+    setError(error)
+  }
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Failure error={error} />
+  }
+
+  if (items.length === 0) {
+    return <Empty />
   }
 
   return (

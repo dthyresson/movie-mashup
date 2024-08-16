@@ -1,6 +1,36 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
+import Mermaid from 'mermaid-react'
 
+const mermaidChart = `
+sequenceDiagram
+  participant Client
+  participant mashMovies
+  participant movieMashupGenerator
+  participant LangbaseAPI
+  participant generateMovieMashupPosterUrl
+  participant FalAPI
+  participant createAuditLog
+  participant db
+
+  Client->>mashMovies: Input (firstMovieId, secondMovieId, realism)
+  mashMovies->>db: Fetch movie details
+  db-->>mashMovies: Return movie details
+  mashMovies->>movieMashupGenerator: Generate mashup (titles)
+  movieMashupGenerator->>LangbaseAPI: POST request to /beta/generate
+  LangbaseAPI-->>movieMashupGenerator: Return raw response
+  movieMashupGenerator-->>mashMovies: Return parsed mashup details
+  mashMovies->>createAuditLog: Log mashup generation
+  mashMovies->>generateMovieMashupPosterUrl: Generate poster
+  generateMovieMashupPosterUrl->>FalAPI: Run fal.run with model and prompt
+  FalAPI-->>generateMovieMashupPosterUrl: Return image URL and timings
+  generateMovieMashupPosterUrl-->>mashMovies: Return poster URL and details
+  mashMovies->>createAuditLog: Log poster generation
+  mashMovies->>db: Create MovieMashup
+  db-->>mashMovies: Return created MovieMashup
+  mashMovies->>db: Update audit logs with MovieMashupId
+  mashMovies-->>Client: Return MovieMashup
+`
 const AboutPage = () => {
   return (
     <>
@@ -403,6 +433,19 @@ model Photo {
           This setup helps to maintain the stability and fairness of our API,
           ensuring that all users have a chance to create and customize their
           movie mashups.
+        </p>
+
+        <h3 className="mb-2 mt-6 text-xl font-semibold">Process Flow</h3>
+        <p className="mb-4">
+          The following sequence diagram illustrates the process flow of creating a movie mashup:
+        </p>
+        <div className="mb-4 overflow-x-auto rounded border border-gray-200 bg-white p-4 shadow-md">
+          <Mermaid
+            chart={mermaidChart}
+            config={{
+              theme: 'neutral',
+            }}
+          />
         </p>
       </div>
     </>

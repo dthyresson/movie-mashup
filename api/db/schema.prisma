@@ -39,6 +39,7 @@ model MovieMashup {
   firstMovieId  String
   secondMovie   Movie    @relation("secondMovie", fields: [secondMovieId], references: [id])
   secondMovieId String
+  auditLogs     AuditLog[]
 }
 
 model Photo {
@@ -49,4 +50,22 @@ model Photo {
   imageUrl      String
   movieMashup   MovieMashup? @relation(fields: [movieMashupId], references: [id])
   movieMashupId String?
+}
+
+model AuditLog {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  requestTime    DateTime
+  completionTime DateTime
+  operationType  OperationType
+  prompt         String
+  model          String
+  tokenUsage     Int
+  movieMashup    MovieMashup  @relation(fields: [movieMashupId], references: [id])
+  movieMashupId  String
+}
+
+enum OperationType {
+  MASHUP
+  POSTER
 }

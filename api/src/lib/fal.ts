@@ -31,6 +31,8 @@ export const generateMovieMashupPosterUrl = async ({
     throw new Error('Invalid realism level')
   }
 
+  const startTime = Date.now()
+
   const options = {
     image_size: 'landscape_16_9',
     num_inference_steps: 4,
@@ -41,7 +43,12 @@ export const generateMovieMashupPosterUrl = async ({
     input: { prompt },
     ...options,
   })
-  const imageUrl = result['images'][0].url
 
-  return { falModel, imageUrl }
+  const endTime = Date.now()
+  const duration = endTime - startTime
+
+  const imageUrl = result['images'][0].url
+  const timings = { inference: result.timings?.inference, total: duration }
+
+  return { falModel, imageUrl, timings, prompt }
 }

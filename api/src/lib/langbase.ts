@@ -51,14 +51,19 @@ export const movieMashupGenerator = async ({
   }
 
   if (response.ok) {
-    const { completion } = await response.json()
-    logger.debug(completion, '>> movieMashupGenerator result')
+    const rawResponse = await response.json()
+    logger.debug(rawResponse, '>> movieMashupGenerator result')
     try {
-      return JSON.parse(completion)
+      const parsedCompletion = JSON.parse(rawResponse.completion)
+      return {
+        ...parsedCompletion,
+        raw: rawResponse,
+      }
     } catch (error) {
       logger.error(error, '>> movieMashupGenerator error')
+      throw new Error('Failed to parse movie mashup completion')
     }
   }
 
-  throw new Error('Failed to generate movie mashup')
+  throw new Error('Failed to generate movie mashup', { cause: await response.text() })
 }

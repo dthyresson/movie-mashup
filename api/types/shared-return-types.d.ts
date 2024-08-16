@@ -1,4 +1,5 @@
 import type {
+  AuditLog as PAuditLog,
   Movie as PMovie,
   MovieMashup as PMovieMashup,
   Photo as PPhoto,
@@ -62,6 +63,8 @@ export interface Mutation {
   updatePhoto: PPhoto
 }
 
+export type OperationType = 'MASHUP' | 'POSTER'
+
 export interface PaginatedItems {
   __typename?: 'PaginatedItems'
   limit: number
@@ -81,6 +84,9 @@ export interface PaginatedMovieMashups {
 
 export interface Query {
   __typename?: 'Query'
+  auditLog?: PAuditLog | null
+  auditLogs: PAuditLog[]
+  auditLogsByMovieMashup: PAuditLog[]
   movie?: PMovie | null
   movieMashup?: PMovieMashup | null
   movieMashups: PMovieMashup[]
@@ -135,6 +141,7 @@ export interface UpdatePhotoInput {
 
 type DateTime = any
 type JSON = any
+export type AuditLog = PAuditLog
 export type Movie = PMovie
 export type MovieMashup = PMovieMashup
 export type Photo = PPhoto

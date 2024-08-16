@@ -1,3 +1,17 @@
+export interface AuditLog {
+  __typename?: 'AuditLog'
+  completionTime: DateTime
+  createdAt: DateTime
+  id: string
+  model: string
+  movieMashup: MovieMashup
+  movieMashupId: string
+  operationType: OperationType
+  prompt: string
+  requestTime: DateTime
+  tokenUsage: number
+}
+
 export interface CreateMovieInput {
   __typename?: 'CreateMovieInput'
   id: string
@@ -78,6 +92,8 @@ export interface Mutation {
   updatePhoto: Photo
 }
 
+export type OperationType = 'MASHUP' | 'POSTER'
+
 export interface PaginatedItems {
   __typename?: 'PaginatedItems'
   limit: number
@@ -108,6 +124,9 @@ export interface Photo {
 
 export interface Query {
   __typename?: 'Query'
+  auditLog?: AuditLog | null
+  auditLogs: AuditLog[]
+  auditLogsByMovieMashup: AuditLog[]
   movie?: Movie | null
   movieMashup?: MovieMashup | null
   movieMashups: MovieMashup[]

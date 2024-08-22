@@ -34,14 +34,12 @@ export const movieMashupGenerator = async ({
   try {
     logger.debug(options, '>> movieMashupGenerator options')
 
-    const result = await pipe.generateText(options)
+    const { completion } = await pipe.generateText(options)
 
-    if (!result.completion) {
-      console.error({ result }, 'Bad response from movieMashupGenerator')
+    if (!completion) {
       throw new Error('Bad response from movieMashupGenerator')
     }
 
-    const { completion } = result
     logger.debug(completion, '>> movieMashupGenerator completion')
 
     return JSON.parse(completion)

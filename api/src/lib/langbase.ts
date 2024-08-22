@@ -18,7 +18,6 @@ export const movieMashupGenerator = async ({
   })
 
   const options = {
-    stream: false,
     variables: [
       {
         name: 'firstMovieTitle',

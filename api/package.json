@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@fal-ai/serverless-client": "^0.14.2",
-    "@graphql-yoga/plugin-response-cache": "^3.8.3",
+    "@fal-ai/serverless-client": "0.14.2",
+    "@graphql-yoga/plugin-response-cache": "3.8.3",
     "@redwoodjs/api": "7.7.3",
     "@redwoodjs/graphql-server": "7.7.3",
-    "@unkey/ratelimit": "^0.4.1",
+    "@unkey/ratelimit": "0.4.1",
+    "langbase": "0.6.0",
     "prisma": "5.18.0"
   }
 }

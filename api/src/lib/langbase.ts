@@ -1,4 +1,5 @@
-// import { Pipe } from 'langbase'
+import { Pipe } from 'langbase'
+
 import { logger } from 'src/lib/logger'
 
 export const movieMashupGenerator = async ({
@@ -12,10 +13,11 @@ export const movieMashupGenerator = async ({
     throw new Error('LANGBASE_MOVIE_MASHUP_PIPE_API_KEY is not set')
   }
 
-  const url = 'https://api.langbase.com/beta/generate'
-  const auth = `Bearer ${process.env.LANGBASE_MOVIE_MASHUP_PIPE_API_KEY}`
+  const pipe = new Pipe({
+    apiKey: process.env.LANGBASE_MOVIE_MASHUP_PIPE_API_KEY,
+  })
 
-  const data = {
+  const options = {
     stream: false,
     variables: [
       {
@@ -29,35 +31,22 @@ export const movieMashupGenerator = async ({
     ],
   }
 
-  logger.debug(data, '>> movieMashupGenerator data')
+  try {
+    logger.debug(options, '>> movieMashupGenerator options')
 
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: auth,
-  }
-  const body = JSON.stringify(data)
+    const result = await pipe.generateText(options)
 
-  logger.debug({ headers, body }, '>> movieMashupGenerator request data')
-
-  const response = await fetch(url, {
-    method: 'POST',
-    headers,
-    body,
-  })
-
-  if (!response.ok) {
-    console.error({ response }, 'Bad response from movieMashupGenerator')
-    throw new Error('Bad response from movieMashupGenerator')
-  }
-
-  if (response.ok) {
-    const { completion } = await response.json()
-    logger.debug(completion, '>> movieMashupGenerator result')
-    try {
-      return JSON.parse(completion)
-    } catch (error) {
-      logger.error(error, '>> movieMashupGenerator error')
+    if (!result.completion) {
+      console.error({ result }, 'Bad response from movieMashupGenerator')
+      throw new Error('Bad response from movieMashupGenerator')
     }
+
+    const { completion } = result
+    logger.debug(completion, '>> movieMashupGenerator completion')
+
+    return JSON.parse(completion)
+  } catch (error) {
+    logger.error(error, '>> movieMashupGenerator error')
   }
 
   throw new Error('Failed to generate movie mashup')

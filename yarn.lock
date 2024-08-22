@@ -2417,7 +2417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fal-ai/serverless-client@npm:^0.14.2":
+"@fal-ai/serverless-client@npm:0.14.2":
   version: 0.14.2
   resolution: "@fal-ai/serverless-client@npm:0.14.2"
   dependencies:
@@ -3506,7 +3506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-yoga/plugin-response-cache@npm:^3.8.3":
+"@graphql-yoga/plugin-response-cache@npm:3.8.3":
   version: 3.8.3
   resolution: "@graphql-yoga/plugin-response-cache@npm:3.8.3"
   dependencies:
@@ -6610,7 +6610,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unkey/ratelimit@npm:^0.4.1":
+"@unkey/ratelimit@npm:0.4.1":
   version: 0.4.1
   resolution: "@unkey/ratelimit@npm:0.4.1"
   dependencies:
@@ -7566,11 +7566,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
-    "@fal-ai/serverless-client": "npm:^0.14.2"
-    "@graphql-yoga/plugin-response-cache": "npm:^3.8.3"
+    "@fal-ai/serverless-client": "npm:0.14.2"
+    "@graphql-yoga/plugin-response-cache": "npm:3.8.3"
     "@redwoodjs/api": "npm:7.7.3"
     "@redwoodjs/graphql-server": "npm:7.7.3"
-    "@unkey/ratelimit": "npm:^0.4.1"
+    "@unkey/ratelimit": "npm:0.4.1"
+    langbase: "npm:0.6.0"
     prisma: "npm:5.18.0"
   languageName: unknown
   linkType: soft
@@ -15583,6 +15584,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"langbase@npm:0.6.0":
+  version: 0.6.0
+  resolution: "langbase@npm:0.6.0"
+  dependencies:
+    dotenv: "npm:^16.4.5"
+    openai: "npm:^4.53.0"
+    zod: "npm:^3.23.8"
+    zod-validation-error: "npm:^3.3.0"
+  checksum: 10c0/4f35374f5f6b33cccbea2f73f293ccfd802132f09c234dd37cfa242b2b33b9cfc83c10efcbe458e65577d6efcca24bf1c2febe4f6d7a4f996d72c1c0f1465c9f
+  languageName: node
+  linkType: hard
+
 "langsmith@npm:~0.1.39":
   version: 0.1.41
   resolution: "langsmith@npm:0.1.41"
@@ -17362,6 +17375,28 @@ __metadata:
     is-docker: "npm:^2.1.1"
     is-wsl: "npm:^2.2.0"
   checksum: 10c0/bb6b3a58401dacdb0aad14360626faf3fb7fba4b77816b373495988b724fb48941cad80c1b65d62bb31a17609b2cd91c41a181602caea597ca80dfbcc27e84c9
+  languageName: node
+  linkType: hard
+
+"openai@npm:^4.53.0":
+  version: 4.56.0
+  resolution: "openai@npm:4.56.0"
+  dependencies:
+    "@types/node": "npm:^18.11.18"
+    "@types/node-fetch": "npm:^2.6.4"
+    abort-controller: "npm:^3.0.0"
+    agentkeepalive: "npm:^4.2.1"
+    form-data-encoder: "npm:1.7.2"
+    formdata-node: "npm:^4.3.2"
+    node-fetch: "npm:^2.6.7"
+  peerDependencies:
+    zod: ^3.23.8
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  bin:
+    openai: bin/cli
+  checksum: 10c0/d1a5ddda89ab95ad319c8d5af5a0e998916971cc453d22ace58475ffe34a624b37ff2e5fc614d489252c0de2f475ef11197b581836f6ac78c95c12089e6fa316
   languageName: node
   linkType: hard
 
@@ -23380,7 +23415,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.4, zod@npm:^3.23.5":
+"zod-validation-error@npm:^3.3.0":
+  version: 3.3.1
+  resolution: "zod-validation-error@npm:3.3.1"
+  peerDependencies:
+    zod: ^3.18.0
+  checksum: 10c0/53869a8478f42cd38f51e159431fe7af9e0b456e8078c6d9d906adb212753788defa9c8bd7374e9ecd4a688b6736fcfa091aebac65054328b8cfdecce9395d8e
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.22.4, zod@npm:^3.23.5, zod@npm:^3.23.8":
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
